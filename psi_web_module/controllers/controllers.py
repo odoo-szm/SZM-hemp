@@ -3,7 +3,7 @@ from odoo import http
 
 
 class PsiWebModule(http.Controller):
-    @http.route('/helloworld', auth='public', )
+    @http.route('/helloworld', auth='public', website=True)
     def helloworld(self, **kwargs):
         return request.render('helloworld.hello')
 
