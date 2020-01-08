@@ -5,7 +5,7 @@ from odoo.http import request
 
 class PsiWebModule(http.Controller):
     @http.route('/helloworld', auth='public', website=True)
-    def helloworld(self, **kwargs):
+    def index(self, **kw):
         return request.render('helloworld.hello')
 
 #     @http.route('/psi_web_module/psi_web_module/objects/', auth='public')
