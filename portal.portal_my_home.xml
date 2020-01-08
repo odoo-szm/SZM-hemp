@@ -1,0 +1,11 @@
+<t name="My Portal" t-name="portal.portal_my_home">
+    <t t-set="my_details" t-value="True"/>
+    <t t-call="portal.portal_layout">
+        <div class="o_portal_my_home">
+            <div class="oe_structure oe_empty" id="oe_structure_portal_my_home_1" spellcheck="false"/>
+            <h3>Activity</h3>
+            <div class="o_portal_docs list-group"></div>
+        </div>
+        <div class="oe_structure oe_empty" id="oe_structure_portal_my_home_2"/>
+    </t>
+</t>
