@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
-# from odoo import http
+-*- coding: utf-8 -*-
+from odoo import http
 
 
-# class PsiWebModule(http.Controller):
-#     @http.route('/psi_web_module/psi_web_module/', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class PsiWebModule(http.Controller):
+    @http.route('/helloworld', auth='public', )
+    def helloworld(self, **kwargs):
+        return request.render('helloworld.hello')
 
 #     @http.route('/psi_web_module/psi_web_module/objects/', auth='public')
 #     def list(self, **kw):
