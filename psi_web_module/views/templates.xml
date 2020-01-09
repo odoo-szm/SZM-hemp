@@ -73,4 +73,10 @@
             </form>
         </t>
     </template>
+    
+    // targeting portal.portal_my_home 
+    <template>
+            <xpath expr="" inherit_id="" />
+    </template>
+        
 </odoo>
