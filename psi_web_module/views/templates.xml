@@ -1,7 +1,7 @@
 <odoo>
-    <template id="hello" name='helloTemp'>
+    <template id="orderInquiry" name='helloTemp'>
         <t t-call="website.layout">
-            <t t-set="title">Hello, world!</t>
+            <t t-set="title">Order Inquiry</t>
             <form action="/website_form/" method="post" class="s_website_form container-fluid mt32 o_fake_not_editable" enctype="multipart/form-data" data-name="Form Builder" data-model_name="mail.mail" data-success_page="/contactus-thank-you">
                 <h3 class='m-1 col-12 text-center'>ORDER INQUIRY</h3>
                 <div class="form-group row">

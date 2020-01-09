@@ -4,14 +4,14 @@ from odoo.http import request
 
 
 class PsiWebModule(http.Controller):
-    @http.route('/hello', auth='public', website=True)
+    @http.route('/orderInquiry', auth='public', website=True)
     def index(self, **kw):
         return request.render('psi_web_module.hello')
 
-class PsiWebModule(http.Controller):
-    @http.route('/psi_web_module/psi_web_module/', auth='public')
-    def hello(self, **kw):
-        return "Hello, world"
+# class PsiWebModule(http.Controller):
+#     @http.route('/psi_web_module/psi_web_module/', auth='public')
+#     def hello(self, **kw):
+#         return "Hello, world"
 
 #     @http.route('/psi_web_module/psi_web_module/objects/', auth='public')
 #     def list(self, **kw):
