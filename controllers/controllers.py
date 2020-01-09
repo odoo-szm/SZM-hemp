@@ -4,9 +4,9 @@ from odoo.http import request
 
 
 class PsiWebModule(http.Controller):
-    @http.route('/helloworld', auth='public', website=True)
+    @http.route('/hello', auth='public', website=True)
     def index(self, **kw):
-        return request.render('helloworld.hello')
+        return request.render('SZM-hemp.hello')
 
 #     @http.route('/psi_web_module/psi_web_module/objects/', auth='public')
 #     def list(self, **kw):

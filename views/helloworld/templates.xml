@@ -1,5 +1,1 @@
-<odoo>
-    <template id="hello" name='helloTemp'>
-        <h1>HELLO WORLD</h1>
-    </template>    
-</odoo>
+
