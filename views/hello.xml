@@ -1,9 +1,0 @@
- 
-
-<odoo>
-    <template id="hello" name='helloTemp'>
-        <t t-call="website.layout">
-            <h1>HELLO WORLD</h1>
-        </t>
-    </template>
-</odoo>
