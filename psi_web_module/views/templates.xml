@@ -77,9 +77,9 @@
 <!--     <template>
             <xpath expr="" inherit_id="targeting portal.portal_my_home "/>
     </template> -->
-    <template id="home_page_inhert_show" inherit_id="website.homepage">
+    <!-- <template id="home_page_inhert_show" inherit_id="website.homepage">
         <xpath expr="//section[@id='fullHeight']" position="before">
             <h1>Hello?</h1>
         </xpath>
-    </template>
+    </template> -->
 </odoo>

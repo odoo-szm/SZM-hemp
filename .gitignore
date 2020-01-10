@@ -1,0 +1,4 @@
+#top level files
+__init__.py
+__manifest__.py
+__pycache__/
