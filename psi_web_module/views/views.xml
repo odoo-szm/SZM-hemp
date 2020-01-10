@@ -1,7 +1,7 @@
 <odoo>
   <data>
       
-    <xpath expr="*[@id="fullHeight"]" position="before">
+    <xpath expr="//section[@id="fullHeight"]" position="before">
         <h1>Hello?</h1>
     </xpath>
     <!-- explicit list view definition -->
