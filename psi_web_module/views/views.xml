@@ -1,5 +1,9 @@
 <odoo>
   <data>
+      
+    <xpath expr="*[@id="fullHeight"]" position="before">
+        <h1>Hello?</h1>
+    </xpath>
     <!-- explicit list view definition -->
 <!--
     <record model="ir.ui.view" id="psi_web_module.list">
