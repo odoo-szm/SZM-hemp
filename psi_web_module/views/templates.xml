@@ -74,9 +74,8 @@
         </t>
     </template>
     
-    // targeting portal.portal_my_home 
     <template>
-            <xpath expr="" inherit_id="" />
+            <xpath expr="" inherit_id="targeting portal.portal_my_home "/>
     </template>
         
 </odoo>
