@@ -78,9 +78,9 @@
             <xpath expr="" inherit_id="targeting portal.portal_my_home "/>
     </template> -->
         
-    <template inherit_id="targeting portal.portal_my_home">
+<!--     <template inherit_id="targeting portal.portal_my_home">
         <xpath expr="*[@id="fullHeight"]">
             <h1>Hello?</h1>
         </xpath>
-    </template>
+    </template> -->
 </odoo>
