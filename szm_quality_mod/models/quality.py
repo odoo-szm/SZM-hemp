@@ -17,11 +17,10 @@ class QualityAlert(models.Model):
         ('Imp Opt', 'Improvement Opportunity'),
         ('Doc Mngmt', 'Document Management'),
         ('Other', 'Other')],
-        string='Priority', tracking=True, default='none', index=True)
+        string='Event', tracking=True, default='none')
     szm_hold_tag = fields.Char('Hold Tag#')
     szm_prod_rpt_nbr = fields.Char('Product Report#')
     szm_mtl_qty = fields.Integer('Material Affected')
     szm_disposition = fields.Html('Disposition')
     szm_eval_review = fields.Html('Evaluation/Review')
     szm_root_cause = fields.Html('Root Cause Analysis')
-    szm_corrective_action = fields.Html('Corrective Action')
