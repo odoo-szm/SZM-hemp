@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+<!-- Change Root Cause to Source -->
+    <record model="ir.ui.view" id="szm_alert_view_form_extend">
+      <field name="name">szm.alert.view.form.extend</field>
+      <field name="model">quality.alert</field>
+      <field name="inherit_id" ref="quality_control.quality_alert_view_form"/>
+      <field name="arch" type="xml">
+          <data>
+            <xpath expr="//field[@name='reason_id']" position="attributes">
+            <attribute name="string">Source</attribute>
+            </xpath>
+          </data>
+      </field>
+    </record>
+  </data>
+</odoo>

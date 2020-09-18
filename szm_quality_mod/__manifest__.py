@@ -11,13 +11,10 @@
 
     'author': "Precision Solutions, Inc",
     'website': "http://www.precisonline.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
+    "license": "AGPL-3",
     'category': 'Quality',
-    'sequence': 50,
-    'version': '0.1',
+    'sequence': 10,
+    'version': '13.0.1.0',
     'installable': True,
     'application': False,
     'auto_install': False,
