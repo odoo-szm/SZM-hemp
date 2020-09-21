@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+<!-- Change Root Cause to Source -->
+    <record model="ir.ui.view" id="szm_alert_view_form_extend">
+      <field name="name">szm.alert.view.form.extend</field>
+      <field name="model">quality.alert</field>
+      <field name="inherit_id" ref="quality_control.quality_alert_view_form"/>
+      <field name="arch" type="xml">
+          <data>
+            <xpath expr="//field[@name='reason_id']" position="attributes">
+            <attribute name="string">Source</attribute>
+            </xpath>
+              <xpath expr="//field[@name='lot_id']" position="after">
+              <field name="szm_mtl_qty"/>
+            </xpath>
+            <xpath expr="//field[@name='reason_id']" position="after">
+              <field name="szm_event"/>
+            </xpath>
+            <xpath expr="//field[@name='priority']" position="after">
+              <field name="szm_hold_tag"/>
+              <field name="szm_prod_rpt_nbr"/>
+            </xpath>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+              <page name="szm_page_qa_one" string="Root Cause &amp; Evaluation Analysis">
+                <group name="szm_page_qa_rc_group">
+                  <field name="szm_root_cause"/>
+                </group>
+                <group name="szm_page_qa_eval_group">
+                  <field name="szm_eval_review"/>
+                </group>
+              </page>
+              <page name="szm_page_qa_two" string="Disposition">
+                  <field name="szm_disposition"/>
+              </page>
+            </xpath>
+          </data>
+      </field>
+    </record>
+  </data>
+</odoo>
