@@ -23,11 +23,13 @@
             </xpath>
             <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
               <page name="szm_page_qa_one" string="Root Cause &amp; Evaluation Analysis">
-                <group name="szm_page_qa_rc_group">
-                  <field name="szm_root_cause"/>
-                </group>
-                <group name="szm_page_qa_eval_group">
-                  <field name="szm_eval_review"/>
+                <group name="szm_page_qa_one_group">
+                  <group name="szm_page_qa_one_group_left">
+                    <field name="szm_root_cause"/>
+                  </group>
+                  <group name="szm_page_qa_one_group_right">
+                    <field name="szm_eval_review"/>
+                  </group>
                 </group>
               </page>
               <page name="szm_page_qa_two" string="Disposition">
