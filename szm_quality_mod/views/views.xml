@@ -22,16 +22,21 @@
               <field name="szm_prod_rpt_nbr"/>
             </xpath>
             <xpath expr="//page[1]" position="after">
-              <page name="szm_page_qa_one" string="Root Cause &amp; Evaluation Analysis">
-                <group name="szm_page_qa_rc_group">
-                  <field name="szm_rc_date"/>
-                  <field name="szm_root_cause"/>
-                </group>
+              <page name="szm_page_qa_one" string="Evaluation &amp; Root Cause Analysis">
                 <group name="szm_page_qa_eval_group">
                   <field name="szm_eval_date"/>
                   <field name="szm_eval_review"/>
                 </group>
+                <group name="szm_page_qa_rc_group">
+                  <field name="szm_rc_date"/>
+                  <field name="szm_root_cause"/>
+                </group>
               </page>
+            </xpath>
+            <xpath expr="//field[@name='action_corrective']" position="before">
+              <field name="szm_ca_date"/>
+            </xpath>
+            <xpath expr="//page[3]" position="replace">
               <page name="szm_page_qa_two" string="Disposition">
                 <field name="szm_disposition_date"/>
                 <field name="szm_disposition"/>
