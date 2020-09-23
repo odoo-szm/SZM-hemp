@@ -16,8 +16,9 @@ class QualityAlert(models.Model):
         ('Cust Feed', 'Customer Feedback'),
         ('Imp Opt', 'Improvement Opportunity'),
         ('Doc Mngmt', 'Document Management'),
+        ('Recall', 'Withdrawal/Recall'),
         ('Other', 'Other')],
-        string='Event', tracking=True, default='none')
+        string='Event', tracking=True, default='Other')
     szm_hold_tag = fields.Char('Hold Tag#')
     szm_prod_rpt_nbr = fields.Char('Product Report#')
     szm_mtl_qty = fields.Integer('Material Affected')

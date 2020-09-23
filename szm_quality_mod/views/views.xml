@@ -21,7 +21,7 @@
               <field name="szm_hold_tag"/>
               <field name="szm_prod_rpt_nbr"/>
             </xpath>
-            <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+            <xpath expr="//notebook/page[@string='Corrective Actions']" position="after">
               <page name="szm_page_qa_one" string="Root Cause &amp; Evaluation Analysis">
                 <group name="szm_page_qa_rc_group">
                   <field name="szm_root_cause"/>
@@ -34,6 +34,16 @@
                   <field name="szm_disposition"/>
               </page>
             </xpath>
+          </data>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="szm_alert_view_tree_extend">
+      <field name="name">szm.alert.view.tree.extend</field>
+      <field name="model">quality.alert</field>
+      <field name="inherit_id" ref="quality.quality_alert_view_tree"/>
+      <field name="arch" type="xml">
+          <data>
+            <xpath expr="//field[@name='company_id']" position="replace"/>
           </data>
       </field>
     </record>
