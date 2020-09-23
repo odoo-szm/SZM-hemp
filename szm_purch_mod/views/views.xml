@@ -1,38 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-<!-- Change Root Cause to Source -->
-    <record model="ir.ui.view" id="szm_alert_view_form_extend">
-      <field name="name">szm.alert.view.form.extend</field>
-      <field name="model">quality.alert</field>
-      <field name="inherit_id" ref="quality_control.quality_alert_view_form"/>
+<!-- Change List and Form views -->
+    <record model="ir.ui.view" id="szm_product_form_extend">
+      <field name="name">szm.product.form.extend</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
       <field name="arch" type="xml">
           <data>
-            <xpath expr="//field[@name='reason_id']" position="attributes">
-            <attribute name="string">Source</attribute>
-            </xpath>
-              <xpath expr="//field[@name='lot_id']" position="after">
-              <field name="szm_mtl_qty"/>
-            </xpath>
-            <xpath expr="//field[@name='reason_id']" position="after">
-              <field name="szm_event"/>
-            </xpath>
-            <xpath expr="//field[@name='priority']" position="after">
-              <field name="szm_hold_tag"/>
-              <field name="szm_prod_rpt_nbr"/>
-            </xpath>
-            <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
-              <page name="szm_page_qa_one" string="Root Cause &amp; Evaluation Analysis">
-                <group name="szm_page_qa_rc_group">
-                  <field name="szm_root_cause"/>
+            <xpath expr="//field[@name='seller_ids']" position="inside">
+              <form string="Vendor Information">
+                <group name="szm_vendor_info_group_mod1">
+                  <group name="vendor" string="Vendor">
+                    <field name="product_variant_count" invisible="1"/>
+                    <field name="name" context="{'res_partner_search_mode': 'supplier'}"/>
+                    <field name="product_name"/>
+                    <field name="product_code"/>
+                    <field name="product_id" groups="product.group_product_variant" domain="[('product_tmpl_id', '=', product_tmpl_id)]" options="{'no_create_edit': True}"/>
+                    <label for="delay"/>
+                    <div name="szm_vendor_info_div1">
+                      <field name="delay" class="oe_inline"/> days
+                                      </div>
+                  </group>
+                  <group string="Price List" name="szm_price_list_group_mod1">
+                    <field name="product_tmpl_id" string="Product" invisible="context.get('visible_product_tmpl_id', True)"/>
+                    <label for="min_qty"/>
+                    <div class="o_row" name="szm_price_list_row_mod1">
+                      <field name="min_qty"/>
+                      <field name="product_uom" groups="uom.group_uom"/>
+                    </div>
+                    <label for="price"/>
+                    <div class="o_row" name="szm_price_list_row_mod2">
+                      <field name="price"/>
+                      <field name="currency_id" groups="base.group_multi_currency"/>
+                    </div>
+                    <label for="date_start" string="Validity"/>
+                    <div class="o_row" name="szm_price_list_row_mod3">
+                      <field name="date_start"/> to <field name="date_end"/>
+                    </div>
+                  </group>
+                  <group string="Other Information" groups="base.group_multi_company" name="szm_price_list_group_mod1">
+                    <field name="szm_manf_make"/>
+                    <field name="szm_manf_model"/>
+                    <field name="company_id" options="{'no_create': True}"/>
+                  </group>
                 </group>
-                <group name="szm_page_qa_eval_group">
-                  <field name="szm_eval_review"/>
-                </group>
-              </page>
-              <page name="szm_page_qa_two" string="Disposition">
-                  <field name="szm_disposition"/>
-              </page>
+              </form>
+              <tree string="Vendor Information" multi_edit="1">
+                <field name="sequence" widget="handle"/>
+                <field name="name" readonly="1"/>
+                <field name="product_name"/>
+                <field name="product_code"/>
+                <field name="product_id" readonly="1" optional="hide" invisible="context.get('product_template_invisible_variant', False)" groups="product.group_product_variant"/>
+                <field name="product_tmpl_id" string="Product" readonly="1" invisible="context.get('visible_product_tmpl_id', True)"/>
+                <field name="currency_id" groups="base.group_multi_currency"/>
+                <field name="date_start" optional="hide"/>
+                <field name="date_end" optional="hide"/>
+                <field name="szm_manf_make"/>
+                <field name="szm_manf_model"/>
+                <field name="min_qty"/>
+                <field name="product_uom" groups="uom.group_uom"/>
+                <field name="price" string="Price"/>
+              </tree>
             </xpath>
           </data>
       </field>
