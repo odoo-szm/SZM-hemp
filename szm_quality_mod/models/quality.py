@@ -28,3 +28,4 @@ class QualityAlert(models.Model):
     szm_eval_date = fields.Datetime(string='Evaluation Date', required=False, index=True, help="Date Evaluation Completed")
     szm_root_cause = fields.Html('Root Cause Analysis')
     szm_rc_date = fields.Datetime(string='Root Cause Date', required=False, index=True, help="Date Root Cause Completed")
+    szm_ca_date = fields.Datetime(string='Corrective Action Date', required=False, index=True, help="Corrective Action Completed")

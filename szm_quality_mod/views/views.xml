@@ -24,14 +24,17 @@
             <xpath expr="//page[1]" position="after">
               <page name="szm_page_qa_one" string="Root Cause &amp; Evaluation Analysis">
                 <group name="szm_page_qa_rc_group">
+                  <field name="szm_rc_date"/>
                   <field name="szm_root_cause"/>
                 </group>
                 <group name="szm_page_qa_eval_group">
+                  <field name="szm_eval_date"/>
                   <field name="szm_eval_review"/>
                 </group>
               </page>
               <page name="szm_page_qa_two" string="Disposition">
-                  <field name="szm_disposition"/>
+                <field name="szm_disposition_date"/>
+                <field name="szm_disposition"/>
               </page>
             </xpath>
           </data>
