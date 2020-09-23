@@ -20,7 +20,7 @@
                     <label for="delay"/>
                     <div name="szm_vendor_info_div1">
                       <field name="delay" class="oe_inline"/> days
-                                      </div>
+                    </div>
                   </group>
                   <group string="Price List" name="szm_price_list_group_mod1">
                     <field name="product_tmpl_id" string="Product" invisible="context.get('visible_product_tmpl_id', True)"/>
@@ -80,8 +80,9 @@
             <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
               <group name="szm_group_extend">
                 <group name="studio_group_left">
-                  <field name="szm_fda_dashboard" widget="radio" attrs="{&quot;invisible&quot;: [[&quot;supplier_rank&quot;,&quot;&lt;=&quot;,0]]}"/>
+                  <field name="szm_fda_date" attrs="{&quot;invisible&quot;: [[&quot;supplier_rank&quot;,&quot;&lt;=&quot;,0]]}"/>
                   <field name="szm_appr_questionnaire" widget="radio" attrs="{&quot;invisible&quot;: [[&quot;supplier_rank&quot;,&quot;&lt;=&quot;,0]]}"/>
+                  <field name="szm_quest_date" attrs="{&quot;invisible&quot;: [[&quot;supplier_rank&quot;,&quot;&lt;=&quot;,0]]}"/>
                   <field name="szm_thirdparty_audit" widget="radio" attrs="{&quot;invisible&quot;: [[&quot;supplier_rank&quot;,&quot;&lt;=&quot;,0]]}"/>
                 </group>
                 <group name="szm_group_right">

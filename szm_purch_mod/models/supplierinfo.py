@@ -11,10 +11,8 @@ class SupplierInfo(models.Model):
 class Partner(models.Model):
     _inherit = 'res.partner'
     
-    szm_fda_dashboard = fields.Selection([
-      ('Yes', 'Yes'),
-      ('Pending', 'Pending'),
-      ('No', 'No')], string="FDA Dashboard", help="FDA Dashboard /FTC Validated", default='No', required=True)
+    szm_fda_date = fields.Datetime(string='FDA Dashboard', required=False, index=True, help="FDA Dashboard validated")
+    szm_quest_date = fields.Datetime(string='Questionnaire Date', required=False, index=True, help="Date questionairre Last Performed")
     szm_appr_questionnaire = fields.Selection([
       ('Yes', 'Yes'),
       ('Pending', 'Pending'),
