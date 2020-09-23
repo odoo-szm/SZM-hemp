@@ -8,7 +8,7 @@ class SupplierInfo(models.Model):
     szm_manf_make = fields.Char('Manufacturer')
     szm_manf_model = fields.Char('Manf. Part Number')
 
-class Partner((models.Model):
+class Partner(models.Model):
     _inherit = 'res.partner'
     
     szm_fda_dashboard = fields.Selection([
