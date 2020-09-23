@@ -21,7 +21,7 @@
               <field name="szm_hold_tag"/>
               <field name="szm_prod_rpt_nbr"/>
             </xpath>
-            <xpath expr="//notebook/page[@name='action_corrective']" position="after">
+            <xpath expr="//page[1]" position="after">
               <page name="szm_page_qa_one" string="Root Cause &amp; Evaluation Analysis">
                 <group name="szm_page_qa_rc_group">
                   <field name="szm_root_cause"/>
