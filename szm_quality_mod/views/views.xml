@@ -36,7 +36,7 @@
             <xpath expr="//field[@name='action_corrective']" position="before">
               <field name="szm_ca_date"/>
             </xpath>
-            <xpath expr="//page[3]" position="replace">
+            <xpath expr="//page[4]" position="replace">
               <page name="szm_page_qa_two" string="Disposition">
                 <field name="szm_disposition_date"/>
                 <field name="szm_disposition"/>
@@ -51,7 +51,12 @@
       <field name="inherit_id" ref="quality.quality_alert_view_tree"/>
       <field name="arch" type="xml">
           <data>
+            <xpath expr="//field[@name='product_tmpl_id']" position="after">
+              <field name="reason_id" string="Source"/>
+              <field name="szm_event"/>
+            </xpath>
             <xpath expr="//field[@name='company_id']" position="replace"/>
+            <xpath expr="//field[@name='check_id']" position="replace"/>
           </data>
       </field>
     </record>
