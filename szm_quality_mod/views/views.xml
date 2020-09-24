@@ -33,12 +33,15 @@
                 </group>
               </page>
             </xpath>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[not(@name)][2]" position="attributes">
+              <attribute name="string">Corrective/Preventative Actions</attribute>
+            </xpath>
             <xpath expr="//field[@name='action_corrective']" position="before">
-              <field name="szm_ca_date"/>
+              <field name="szm_ca_date" string="CAPA Date"/>
             </xpath>
             <xpath expr="//page[4]" position="replace">
               <page name="szm_page_qa_two" string="Disposition">
-                <field name="szm_disposition_date"/>
+                <field name="szm_disposition_date" string="Disposition Date"/>
                 <field name="szm_disposition"/>
               </page>
             </xpath>
