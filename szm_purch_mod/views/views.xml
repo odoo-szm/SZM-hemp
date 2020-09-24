@@ -74,21 +74,21 @@
       <field name="arch" type="xml">
           <data>
             <xpath expr="//field[@name='vat']" position="after">
-              <field name="supplier_rank" attrs="{'invisible': [['company_type','=',"person"]}"/>
-              <field name="customer_rank" attrs="{'invisible': [['company_type','=',"person"]}"/>
+              <field name="supplier_rank" attrs="{'invisible': [('company_type','=',"person")]}"/>
+              <field name="customer_rank" attrs="{'invisible': [('company_type','=',"person")]}"/>
             </xpath>
             <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
               <group name="szm_group_extend">
                 <group name="studio_group_left">
-                  <field name="szm_fda_date" attrs="{'invisible': ['&',['supplier_rank','<=',0],['company_type','=',"person"]]}"/>
-                  <field name="szm_appr_questionnaire" widget="selection" attrs="{'invisible': ['&',['supplier_rank','<=',0],['company_type','=',"person"]]}"/>
-                  <field name="szm_quest_date" attrs="{'invisible': ['&',['supplier_rank','<=',0],['company_type','=',"person"]]}"/>
-                  <field name="szm_thirdparty_audit" widget="selection" attrs="{'invisible': ['&',['supplier_rank','<=',0],['company_type','=',"person"]]}"/>
+                  <field name="szm_fda_date" attrs="{'invisible': [('supplier_rank','<=',0),('company_type','=','person')]}"/>
+                  <field name="szm_appr_questionnaire" widget="selection" attrs="{'invisible': [('supplier_rank','<=',0),('company_type','=','person')]}"/>
+                  <field name="szm_quest_date" attrs="{'invisible': [('supplier_rank','<=',0),('company_type','=','person')]}"/>
+                  <field name="szm_thirdparty_audit" widget="selection" attrs="{'invisible': [('supplier_rank','<=',0),('company_type','=','person')]}"/>
                 </group>
                 <group name="szm_group_right">
-                  <field name="szm_haccp" widget="selection" attrs="{'invisible': ['&',['supplier_rank','<=',0],['company_type','=',"person"]]}"/>
-                  <field name="szm_risk" widget="selection" attrs="{'invisible': ['&',['supplier_rank','<=',0],['company_type','=',"person"]]}"/>
-                  <field name="szm_status" widget="selection" attrs="{'invisible': ['&',['supplier_rank','<=',0],['company_type','=',"person"]]}"/>
+                  <field name="szm_haccp" widget="selection" attrs="{'invisible': ['&',('supplier_rank','<=',0),('company_type','=','person')]}"/>
+                  <field name="szm_risk" widget="selection" attrs="{'invisible': ['&',('supplier_rank','<=',0),('company_type','=','person')]}"/>
+                  <field name="szm_status" widget="selection" attrs="{'invisible': ['&',('supplier_rank','<=',0),('company_type','=','person')]}"/>
                 </group>
               </group>
             </xpath>
