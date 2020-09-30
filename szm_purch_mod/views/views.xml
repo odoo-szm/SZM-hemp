@@ -39,7 +39,7 @@
                       <field name="date_start"/> to <field name="date_end"/>
                     </div>
                   </group>
-                  <group string="Other Information" groups="base.group_multi_company" name="szm_price_list_group_mod1">
+                  <group string="Other Information" name="szm_price_list_group_mod1">
                     <field name="szm_manf_make"/>
                     <field name="szm_manf_model"/>
                     <field name="company_id" options="{'no_create': True}"/>
