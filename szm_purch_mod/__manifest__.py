@@ -6,6 +6,7 @@
 
     'description': """
         09-17-20 -  Jeff Mueller, Add Manufacturer attributes to Supplier Info.
+        09-30-20 -  Jeff Mueller, Removed Multi-Company requirement from view.
     """,
 
     'author': "Precision Solutions, Inc",
@@ -13,7 +14,7 @@
     "license": "AGPL-3",
     'category': 'Purchasing',
     'sequence': 10,
-    'version': '13.0.1.1',
+    'version': '13.0.1.2',
     'installable': True,
     'application': False,
     'auto_install': False,
