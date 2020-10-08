@@ -1,35 +1,34 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "szm_product_mod",
+    'name': 'SZM Product Module Enhancement',
 
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    'summary': 'Enhancement to Product Module',
 
     'description': """
-        Long description of module's purpose
+        10-08-20 -  Jeff Mueller, Add Product Attributes for quality.
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'author': "Precision Solutions, Inc",
+    'website': "http://www.precisonline.com",
+    "license": "AGPL-3",
+    'category': 'Product',
+    'sequence': 10,
+    'version': '13.0.1.0',
+    'installable': True,
+    'application': False,
+    'auto_install': False,
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['stock'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        # 'views/views.xml',
+        # 'views/templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
-        'demo/demo.xml',
-    ],
+        # 'demo/demo.xml',
+    ]
 }
