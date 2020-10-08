@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="szm_product_mod.list">
+      <field name="name">szm_product_mod list</field>
+      <field name="model">szm_product_mod.szm_product_mod</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="szm_product_mod.action_window">
+      <field name="name">szm_product_mod window</field>
+      <field name="res_model">szm_product_mod.szm_product_mod</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="szm_product_mod.action_server">
+      <field name="name">szm_product_mod server</field>
+      <field name="model_id" ref="model_szm_product_mod_szm_product_mod"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="szm_product_mod" id="szm_product_mod.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="szm_product_mod.menu_1" parent="szm_product_mod.menu_root"/>
+    <menuitem name="Menu 2" id="szm_product_mod.menu_2" parent="szm_product_mod.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="szm_product_mod.menu_1_list" parent="szm_product_mod.menu_1"
+              action="szm_product_mod.action_window"/>
+    <menuitem name="Server to list" id="szm_product_mod" parent="szm_product_mod.menu_2"
+              action="szm_product_mod.action_server"/>
+-->
+  </data>
+</odoo>
