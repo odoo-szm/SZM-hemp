@@ -16,3 +16,6 @@ class Product(models.Model):
     szm_coa_file = fields.Boolean('Sample CoA on File', help="If checked, Sample CoA is on File.")
     szm_algrn_stmt = fields.Boolean('Allergen Statement', help="Allergen Statement Required")
     szm_coo = fields.Many2one('res.country', string='Country of Origin', ondelete='restrict')
+    szm_acpt_doc = fields.Html('Acceptance Documentation')
+    szm_criteria = fields.Html('Acceptance Criteria')
+    
