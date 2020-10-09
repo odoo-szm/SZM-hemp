@@ -2,97 +2,30 @@
 <odoo>
   <data>
 <!-- Change List and Form views -->
-    <record model="ir.ui.view" id="szm_product_form_extend">
-      <field name="name">szm.product.form.extend</field>
+    <record model="ir.ui.view" id="szm_product_form_extend_two">
+      <field name="name">szm.product.form.extend.two</field>
       <field name="model">product.template</field>
       <field name="inherit_id" ref="product.product_template_only_form_view"/>
       <field name="arch" type="xml">
-          <data>
-            <xpath expr="//field[@name='seller_ids']" position="inside">
-              <form string="Vendor Information">
-                <group name="szm_vendor_info_group_mod1">
-                  <group name="vendor" string="Vendor">
-                    <field name="product_variant_count" invisible="1"/>
-                    <field name="name" context="{'res_partner_search_mode': 'supplier'}"/>
-                    <field name="product_name"/>
-                    <field name="product_code"/>
-                    <field name="product_id" groups="product.group_product_variant" domain="[('product_tmpl_id', '=', product_tmpl_id)]" options="{'no_create_edit': True}"/>
-                    <label for="delay"/>
-                    <div name="szm_vendor_info_div1">
-                      <field name="delay" class="oe_inline"/> days
-                    </div>
-                  </group>
-                  <group string="Price List" name="szm_price_list_group_mod1">
-                    <field name="product_tmpl_id" string="Product" invisible="context.get('visible_product_tmpl_id', True)"/>
-                    <label for="min_qty"/>
-                    <div class="o_row" name="szm_price_list_row_mod1">
-                      <field name="min_qty"/>
-                      <field name="product_uom" groups="uom.group_uom"/>
-                    </div>
-                    <label for="price"/>
-                    <div class="o_row" name="szm_price_list_row_mod2">
-                      <field name="price"/>
-                      <field name="currency_id" groups="base.group_multi_currency"/>
-                    </div>
-                    <label for="date_start" string="Validity"/>
-                    <div class="o_row" name="szm_price_list_row_mod3">
-                      <field name="date_start"/> to <field name="date_end"/>
-                    </div>
-                  </group>
-                  <group string="Other Information" name="szm_price_list_group_mod1">
-                    <field name="szm_manf_make"/>
-                    <field name="szm_manf_model"/>
-                    <field name="company_id" options="{'no_create': True}"/>
-                  </group>
+        <data>
+          <xpath expr="//form[@name='Product Template']/sheet[1]/notebook[1]" position="inside">
+            <page name="szm_accept_page" string="Acceptance">
+              <group name="szm_group_criteria">
+                <group name="szm_group_criteria_left">
+                  <field name="szm_risk"/>
+                  <field name="szm_coo"/>
+                  <field name="szm_manf_specs"/>
+                  <field name="szm_coa_file"/>
+                  <field name="szm_algrn_stmt"/>
                 </group>
-              </form>
-              <tree string="Vendor Information" multi_edit="1">
-                <field name="sequence" widget="handle"/>
-                <field name="name" readonly="1"/>
-                <field name="product_name"/>
-                <field name="product_code"/>
-                <field name="product_id" readonly="1" optional="hide" invisible="context.get('product_template_invisible_variant', False)" groups="product.group_product_variant"/>
-                <field name="product_tmpl_id" string="Product" readonly="1" invisible="context.get('visible_product_tmpl_id', True)"/>
-                <field name="currency_id" groups="base.group_multi_currency"/>
-                <field name="date_start" optional="hide"/>
-                <field name="date_end" optional="hide"/>
-                <field name="szm_manf_make"/>
-                <field name="szm_manf_model"/>
-                <field name="min_qty"/>
-                <field name="product_uom" groups="uom.group_uom"/>
-                <field name="price" string="Price"/>
-              </tree>
-            </xpath>
-          </data>
-      </field>
-    </record>
-    <!-- Change Res Partner views -->
-    <record model="ir.ui.view" id="szm_view_partner_form_extend">
-      <field name="name">szm.view.partner.form.extend</field>
-      <field name="model">res.partner</field>
-      <field name="inherit_id" ref="base.view_partner_form"/>
-      <field name="arch" type="xml">
-          <data>
-            <xpath expr="//field[@name='vat']" position="after">
-              <field name="supplier_rank" attrs="{'invisible': [('company_type','=','person')]}"/>
-              <field name="customer_rank" attrs="{'invisible': [('company_type','=','person')]}"/>
-            </xpath>
-            <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
-              <group name="szm_group_extend" attrs="{'invisible': [('company_type','=','person')]}">
-                <group name="szm_group_left">
-                  <field name="szm_fda_date" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
-                  <field name="szm_appr_questionnaire" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
-                  <field name="szm_quest_date" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
-                  <field name="szm_thirdparty_audit" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
-                </group>
-                <group name="szm_group_right">
-                  <field name="szm_haccp" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
-                  <field name="szm_risk" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
-                  <field name="szm_status" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
+                <group name="szm_group_criteria_right">
+                  <field name="szm_acpt_doc"/>
+                  <field name="szm_criteria"/>
                 </group>
               </group>
-            </xpath>
-          </data>
+            </page>
+          </xpath>
+        </data>
       </field>
     </record>
   </data>
