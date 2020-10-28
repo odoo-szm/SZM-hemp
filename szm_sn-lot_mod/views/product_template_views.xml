@@ -8,9 +8,15 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tracking']" position="after">
                  <!-- <field name="picking_serialno_id"/> -->
-              <field name="szm_method_lotsn" widget="radio"/>
-              <field name="szm_digits_lotsn"/>
-              <field name="szm_prefix_lotsn"/>
+              <div class="o_setting_right_pane" attrs="{'invisible': [('tracking', '=', 'none')]}">
+                <field name="szm_method_lotsn" widget="radio"/>
+                <div class="content-group" attrs="{'invisible': ['||',('szm_method_lotsn', '=', 'std'),('szm_method_lotsn', '=', 'date'),('szm_method_lotsn', '=', False)]}">
+                    <div class="mt16">
+                      <field name="szm_digits_lotsn"/>
+                      <field name="szm_prefix_lotsn"/>
+                    </div>
+                </div>
+              </div>
             </xpath>
             
         </field>
