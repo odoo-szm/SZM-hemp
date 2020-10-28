@@ -34,6 +34,18 @@
                           
                           <div class="o_setting_right_pane" attrs="{'invisible': ['|',('szm_apply_method', '=', 'product') , ('szm_apply_method', '=', False)]}">
 
+                            <label for="szm_method_lotsn"/>
+                            <field name="szm_method_lotsn" widget="radio"/>
+                            <div class="text-muted">
+                                  Method used to generate Lot/SN Numbers
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="col-md-6 col-xs-12 o_setting_box"  >
+                          
+                          <div class="o_setting_right_pane" attrs="{'invisible': ['||',('szm_apply_method', '=', 'product') ,('szm_method_lotsn', '=', 'std'), ('szm_apply_method', '=', False)]}">
+
                             <label for="szm_digits_lotsn"/>
                             <field name="szm_digits_lotsn"/>
                             <div class="text-muted">
@@ -43,7 +55,7 @@
 
                       </div>
                       <div class="col-md-6 col-xs-12 o_setting_box"  >
-                          <div class="o_setting_right_pane" attrs="{'invisible': ['|',('szm_apply_method', '=', 'product') , ('szm_apply_method', '=', False)]}">
+                          <div class="o_setting_right_pane" attrs="{'invisible': ['||',('szm_apply_method', '=', 'product') ,('szm_method_lotsn', '=', 'std'), ('szm_apply_method', '=', False)]}">
                             <label for="szm_prefix_lotsn"/>
                           
                             <field name="szm_prefix_lotsn"/>

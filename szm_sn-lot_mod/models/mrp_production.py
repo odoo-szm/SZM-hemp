@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, _
+from datetime import datetime
 
 class MrpProductionInherit(models.Model):
     """ Manufacturing Orders """
@@ -11,12 +12,22 @@ class MrpProductionInherit(models.Model):
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
 
         if result.szm_apply_method == "global":
-            digit = result.szm_digits_lotsn
-            prefix = result.szm_prefix_lotsn
+            if result.szm_method_lotsn == "cust":
+              digit = result.szm_digits_lotsn
+              prefix = result.szm_prefix_lotsn
+            else:
+              """ Form Settings Date based Lot/SN """
+              digit  = result.szm_digits_lotsn
+              prefix = datetime.date
         else:
-            digit = self.product_id.szm_digits_lotsn
-            prefix = self.product_id.szm_prefix_lotsn
-            
+            if self.product_id.szm_method_lotsn == "cust":
+              digit = self.product_id.szm_digits_lotsn
+              prefix = self.product_id.szm_prefix_lotsn
+            else:
+              """ Form Product Date based Lot/SN """
+              digit  = self.product_id.szm_digits_lotsn
+              prefix = datetime.date  
+              
         serial_no = company.serial_no + 1
         serial_no_digit=len(str(company.serial_no))
 
