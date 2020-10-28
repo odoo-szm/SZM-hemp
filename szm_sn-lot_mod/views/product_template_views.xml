@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tracking']" position="after">
                  <!-- <field name="picking_serialno_id"/> -->
+              <field name="szm_method_lotsn" widget="radio"/>
               <field name="szm_digits_lotsn"/>
               <field name="szm_prefix_lotsn"/>
             </xpath>
