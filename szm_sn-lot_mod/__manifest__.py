@@ -3,33 +3,36 @@
     'name': "szm_sn-lot_mod",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        SZM Lot modification on handling lot numbers at time of receipt and
+        when creating a manufacturing order. This has been modeled from
+        BrowseInfo @ www.browseinfo.in and other similar applications.""",
 
     'description': """
-        Long description of module's purpose
+        When Lot controlled item is received, automaatically create lot number based
+        on lot rules defined for the product.
+        When MO is processed, create lot number based on the following formula.
+        DDD-YY-NN, where DDD = Day of the year, YY = Last 2 digits of the year, and
+        NN = Sequence number of lot for the day
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Precision Solutions",
+    'website': "http://www.precisonline.com",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'category': 'Manufacturing',
+    'version': '13.0.1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
-
+    'depends': ['base','mrp','stock'],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+    
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/mrp_product_produce_views.xml',
+        'views/res_config_setting_views.xml',
+        'views/product_template_views.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'demo': [],
 }
