@@ -29,10 +29,10 @@
                       </div>
                   </div>
               </div>
-                  <div class="row mt16 o_settings_container">
+                  <div class="row mt16 o_settings_container" attrs="{'invisible': ['|', ('szm_apply_method', '=', 'product'), ('szm_apply_method', '=', False)]}">
                       <div class="col-md-6 col-xs-12 o_setting_box"  >
                           
-                          <div class="o_setting_right_pane" attrs="{'invisible': ['|',('szm_apply_method', '=', 'product') , ('szm_apply_method', '=', False)]}">
+                          <div class="o_setting_right_pane">
 
                             <label for="szm_method_lotsn"/>
                             <field name="szm_method_lotsn" widget="radio"/>
@@ -44,26 +44,20 @@
                       </div>
                       <div class="col-md-6 col-xs-12 o_setting_box"  >
                           
-                          <div class="o_setting_right_pane" attrs="{'invisible': ['||',('szm_apply_method', '=', 'product') ,('szm_method_lotsn', '=', 'std'), ('szm_apply_method', '=', False)]}">
+                          <div class="o_setting_right_pane" attrs="{'invisible': ['|',('szm_method_lotsn', '=', 'std'), ('szm_method_lotsn', '=', 'date')]}">
 
                             <label for="szm_digits_lotsn"/>
                             <field name="szm_digits_lotsn"/>
                             <div class="text-muted">
                                   Number of digits for MO Lot/SN
-                              </div>
-                          </div>
-
-                      </div>
-                      <div class="col-md-6 col-xs-12 o_setting_box"  >
-                          <div class="o_setting_right_pane" attrs="{'invisible': ['||',('szm_apply_method', '=', 'product') ,('szm_method_lotsn', '=', 'std'), ('szm_apply_method', '=', False)]}">
+                            </div>
                             <label for="szm_prefix_lotsn"/>
                           
                             <field name="szm_prefix_lotsn"/>
                             <div class="text-muted">
                                   Prefix for MO Lot/SN
-                              </div>
+                            </div>
                           </div>
-                          
                       </div>
                   </div>
         </xpath>
