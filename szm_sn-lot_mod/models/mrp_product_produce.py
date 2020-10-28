@@ -27,7 +27,7 @@ class MrpProductProduce(models.TransientModel):
 			prefix = self.product_id.szm_prefix_lotsn
 
 		serial_no = company.serial_no + 1
-		serial_no_digit=len(str(company.serial_no))
+		serial_no_digit=len(str(company.szm_lotsn))
 
 		diffrence = abs(serial_no_digit - digit)
 		if diffrence > 0:
@@ -41,7 +41,7 @@ class MrpProductProduce(models.TransientModel):
 			lot_no = prefix+no+str(serial_no)
 		else:
 			lot_no = str(serial_no)
-		company.update({'serial_no' : serial_no})
+		company.update({'szm_lotsn' : serial_no})
 		lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
 		print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
 		self.finished_lot_id = lot_serial_no
