@@ -5,11 +5,7 @@ from odoo import api, fields, models, _
 class ResConfigSettings(models.TransientModel):
 	_inherit = 'res.config.settings'
 
-  szm_method_lotsn   = fields.Selection([
-      ('std', 'Standard'),
-      ('cust', 'Custom'),
-      ('date', 'Date')],
-      string='Lot/SN Method', default='std', related="company_id.szm_method_lotsn", readonly=False)
+  szm_method_lotsn = fields.Selection(string='Lot/SN Method', related="company_id.szm_method_lotsn", readonly=False)
 	szm_digits_lotsn = fields.Integer(string='Digits :',related="company_id.szm_digits_lotsn",readonly=False)
 	szm_prefix_lotsn = fields.Char(string="Prefix :",related="company_id.szm_prefix_lotsn",readonly=False)
 	szm_apply_method = fields.Selection([("global","Global"),("product",'Product Level')],'Lot/SN Application Method',default="product")
