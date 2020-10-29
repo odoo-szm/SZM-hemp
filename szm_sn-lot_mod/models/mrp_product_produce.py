@@ -9,7 +9,7 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare, float_round
 
 class MrpProductProduce(models.TransientModel):
-	_inherit = 'mrp.product.produce'
+  _inherit = 'mrp.product.produce'
 
   lot_id = fields.Many2one('stock.production.lot', string='Lot',required=False)
 
