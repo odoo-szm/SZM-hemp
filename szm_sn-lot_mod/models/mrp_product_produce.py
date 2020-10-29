@@ -11,19 +11,19 @@ from odoo.tools import float_compare, float_round
 class MrpProductProduce(models.TransientModel):
 	_inherit = 'mrp.product.produce'
 
-	lot_id = fields.Many2one('stock.production.lot', string='Lot',required=False)
+  lot_id = fields.Many2one('stock.production.lot', string='Lot',required=False)
 
-	# @api.multi
-	def do_produce(self):
-		self._check_company()
-		company = self.env.company
-		result = self.env['res.config.settings'].search([],order="id desc", limit=1)
+  # @api.multi
+  def do_produce(self):
+  self._check_company()
+    company = self.env.company
+    result = self.env['res.config.settings'].search([],order="id desc", limit=1)
     # Get Day of the year    
-    today     = datetime.date.today()
-    year      = datetime.date.today().year
-    day       = today.toordinal()
+    today = datetime.date.today()
+    year = datetime.date.today().year
+    day = today.toordinal()
     yearstart = datetime.datetime(year,1,1)
-    start     = yearstart.toordinal()
+    start = yearstart.toordinal()
     day_of_year = ((day-start)+1)
     std_lotsn = False
   
@@ -53,27 +53,28 @@ class MrpProductProduce(models.TransientModel):
     serial_no = company.szm_lotsn + 1
     serial_no_digit=len(str(company.szm_lotsn))
 
-		diffrence = abs(serial_no_digit - digit)
-		if diffrence > 0:
-			no = "0"
-			for i in range(diffrence-1) :
-				no = no + "0"
-		else :
-			no = ""
+    diffrence = abs(serial_no_digit - digit)
+    if diffrence > 0:
+      no = "0"
+      for i in range(diffrence-1) :
+        no = no + "0"
+    else :
+      no = ""
 
-		if prefix != False:
-			lot_no = prefix+no+str(serial_no)
-		else:
-			lot_no = str(serial_no)
-		company.update({'szm_lotsn' : serial_no})
-		lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
-		print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
-		self.finished_lot_id = lot_serial_no
+    if prefix != False:
+      lot_no = prefix+no+str(serial_no)
+    else:
+      lot_no = str(serial_no)
 
-		""" Save the current wizard and go back to the MO. """
-		# self.ensure_one()
-		self._record_production()
+    company.update({'szm_lotsn' : serial_no})
+    lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
+    print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
+    self.finished_lot_id = lot_serial_no
 
-		return {
-				'type': 'ir.actions.act_window_close'
-				}
+    """ Save the current wizard and go back to the MO. """
+    # self.ensure_one()
+    self._record_production()
+
+    return {
+        'type': 'ir.actions.act_window_close'
+        }
