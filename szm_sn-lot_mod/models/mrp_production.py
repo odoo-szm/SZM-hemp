@@ -17,6 +17,7 @@ class MrpProductionInherit(models.Model):
         yearstart = datetime.datetime(year,1,1)
         start     = yearstart.toordinal()
         day_of_year = ((day-start)+1)
+        std_lotsn = False
       
         if result.szm_apply_method == "global":
             if result.szm_method_lotsn == "cust":
@@ -26,10 +27,9 @@ class MrpProductionInherit(models.Model):
               """ Form Settings Date based Lot/SN """
               if result.szm_method_lotsn == "date":
                 digit  = 2
-                prefix = day_of_year+'-'+year
+                prefix = "T" + day_of_year + "-" + year + "-"
               else:
-                digit  = 9
-                prefix = ''
+                std_lotsn = True
         else:
             if self.product_id.szm_method_lotsn == "cust":
               digit = self.product_id.szm_digits_lotsn
@@ -38,13 +38,12 @@ class MrpProductionInherit(models.Model):
               """ Form Product Date based Lot/SN """
               if self.product_id.szm_method_lotsn == "date":
                 digit  = 2
-                prefix = day_of_year+'-'+year
+                prefix = "T" + day_of_year + "-" + year + "-"
               else:
-                digit  = 9
-                prefix = ''
+                std_lotsn = True
               
-        serial_no = company.serial_no + 1
-        serial_no_digit=len(str(company.serial_no))
+        serial_no = company.szm_lotsn + 1
+        serial_no_digit=len(str(company.szm_lotsn))
 
         diffrence = abs(serial_no_digit - digit)
         if diffrence > 0:
@@ -59,7 +58,10 @@ class MrpProductionInherit(models.Model):
         else:
             lot_no = str(serial_no)
         company.update({'serial_no' : serial_no})
-        lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
+        if std_lotsn:
+          lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
+        else:
+          lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
         return lot_serial_no
 
     def _workorders_create(self, bom, bom_data):
