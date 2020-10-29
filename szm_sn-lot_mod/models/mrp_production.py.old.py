@@ -2,8 +2,6 @@
 
 from odoo import api, fields, models, _
 from datetime import datetime
-from odoo.tools import date_utils
-
 
 class MrpProductionInherit(models.Model):
     """ Manufacturing Orders """
@@ -13,44 +11,36 @@ class MrpProductionInherit(models.Model):
         company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
 #       to_day = datetime.date.today()
-        year = fields.Date.today().year
-        days = fields.Date.today().day
+        year = datetime.datetime.today().year
+#       day = to_day.toordinal()
 #       yearstart = datetime.datetime(to_year,1,1)
 #       start = yearstart.toordinal()
 #       day_of_year = ((day-start)+1)
         day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1)
         std_lotsn = False
-        digit = 9
-        prefix = ''
-
+      
         if result.szm_apply_method == "global":
-            switch (result.szm_method_lotsn) {
-                case "cust":
-                    digit = result.szm_digits_lotsn;
-                    prefix = result.szm_prefix_lotsn;
-                    break;
-                case "date":
-                    digit  = 2;
-                    prefix = 'T' + str(day_of_year) + '-' + str(year) + '-';
-                    break;
-                case "std":
-                    std_lotsn = True;
-                    break;
-            }
+            if result.szm_method_lotsn == "cust":
+              digit = result.szm_digits_lotsn
+              prefix = result.szm_prefix_lotsn
+            else:
+              """ Form Settings Date based Lot/SN """
+              if result.szm_method_lotsn == "date":
+                digit  = 2
+                prefix = "T" + day_of_year + "-" + year + "-"
+              else:
+                std_lotsn = True
         else:
-            switch (self.product_id.szm_method_lotsn) {
-                case "cust":
-                    digit = result.szm_digits_lotsn;
-                    prefix = result.szm_prefix_lotsn;
-                    break;
-                case "date":
-                    digit  = 2;
-                    prefix = 'T' + str(day_of_year) + '-' + str(year) + '-';
-                    break;
-                case "std":
-                    std_lotsn = True;
-                    break;
-            }
+            if self.product_id.szm_method_lotsn == "cust":
+              digit = self.product_id.szm_digits_lotsn
+              prefix = self.product_id.szm_prefix_lotsn
+            else:
+              """ Form Product Date based Lot/SN """
+              if self.product_id.szm_method_lotsn == "date":
+                digit  = 2
+                prefix = "T" + day_of_year + "-" + year + "-"
+              else:
+                std_lotsn = True
               
         serial_no = company.szm_lotsn + 1
         serial_no_digit=len(str(company.szm_lotsn))
