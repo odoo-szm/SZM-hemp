@@ -17,7 +17,7 @@ class MrpProductionInherit(models.Model):
 #       start = yearstart.toordinal()
 #       day_of_year = ((day-start)+1)
         day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1
-        std_lotsn = False
+        std_lotsn = ''
       
         if result.szm_apply_method == "global":
             if result.szm_method_lotsn == "cust":

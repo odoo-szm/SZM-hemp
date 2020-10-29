@@ -19,13 +19,13 @@ class MrpProductProduce(models.TransientModel):
     result = self.env['res.config.settings'].search([],order="id desc", limit=1)
     # Get Day of the year    
 #    to_day = datetime.date.today()
-     year = datetime.date.today().year
+    year = datetime.date.today().year
 #    day = to_day.toordinal()
 #    yearstart = datetime.datetime(to_year,1,1)
 #    start = yearstart.toordinal()
 #    day_of_year = ((day-start)+1)
     day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1
-    std_lotsn = False
+    std_lotsn = ''
   
     if result.szm_apply_method == "global":
         if result.szm_method_lotsn == "cust":
@@ -67,7 +67,11 @@ class MrpProductProduce(models.TransientModel):
       lot_no = str(serial_no)
 
     company.update({'szm_lotsn' : serial_no})
-    lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
+    if std_lotsn:
+      lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
+    else:
+      lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
+
     print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
     self.finished_lot_id = lot_serial_no
 
