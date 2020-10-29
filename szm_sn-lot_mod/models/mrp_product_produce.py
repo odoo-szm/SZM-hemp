@@ -2,8 +2,7 @@
 
 from odoo import api, fields, models, _
 from collections import Counter
-from datetime import datetime
-from odoo import api, fields, models, _
+from datetime import datetime, date, timedelta
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare, float_round
@@ -19,12 +18,13 @@ class MrpProductProduce(models.TransientModel):
     company = self.env.company
     result = self.env['res.config.settings'].search([],order="id desc", limit=1)
     # Get Day of the year    
-    today = datetime.date.today()
-    year = datetime.date.today().year
-    day = today.toordinal()
-    yearstart = datetime.datetime(year,1,1)
-    start = yearstart.toordinal()
-    day_of_year = ((day-start)+1)
+#    to_day = datetime.date.today()
+     year = datetime.date.today().year
+#    day = to_day.toordinal()
+#    yearstart = datetime.datetime(to_year,1,1)
+#    start = yearstart.toordinal()
+#    day_of_year = ((day-start)+1)
+    day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1
     std_lotsn = False
   
     if result.szm_apply_method == "global":
