@@ -26,7 +26,7 @@ class MrpProductProduce(models.TransientModel):
 			digit = self.product_id.szm_digits_lotsn
 			prefix = self.product_id.szm_prefix_lotsn
 
-		serial_no = company.serial_no + 1
+		serial_no = company.szm_lotsn + 1
 		serial_no_digit=len(str(company.szm_lotsn))
 
 		diffrence = abs(serial_no_digit - digit)

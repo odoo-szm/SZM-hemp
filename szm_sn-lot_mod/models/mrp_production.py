@@ -10,23 +10,38 @@ class MrpProductionInherit(models.Model):
     def create_custom_lot_no(self,wo):
         company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
-
+        # Get Day of the year    
+        today     = datetime.date.today()
+        year      = datetime.date.today().year
+        day       = today.toordinal()
+        yearstart = datetime.datetime(year,1,1)
+        start     = yearstart.toordinal()
+        day_of_year = ((day-start)+1)
+      
         if result.szm_apply_method == "global":
             if result.szm_method_lotsn == "cust":
               digit = result.szm_digits_lotsn
               prefix = result.szm_prefix_lotsn
             else:
               """ Form Settings Date based Lot/SN """
-              digit  = result.szm_digits_lotsn
-              prefix = datetime.date
+              if result.szm_method_lotsn == "date":
+                digit  = 2
+                prefix = day_of_year+'-'+year
+              else:
+                digit  = 9
+                prefix = ''
         else:
             if self.product_id.szm_method_lotsn == "cust":
               digit = self.product_id.szm_digits_lotsn
               prefix = self.product_id.szm_prefix_lotsn
             else:
               """ Form Product Date based Lot/SN """
-              digit  = self.product_id.szm_digits_lotsn
-              prefix = datetime.date  
+              if self.product_id.szm_method_lotsn == "date":
+                digit  = 2
+                prefix = day_of_year+'-'+year
+              else:
+                digit  = 9
+                prefix = ''
               
         serial_no = company.serial_no + 1
         serial_no_digit=len(str(company.serial_no))
