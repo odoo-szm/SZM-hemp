@@ -18,16 +18,40 @@ class MrpProductProduce(models.TransientModel):
 		self._check_company()
 		company = self.env.company
 		result = self.env['res.config.settings'].search([],order="id desc", limit=1)
-
-		if result.szm_apply_method == "global":
-			digit = result.szm_digits_lotsn
-			prefix = result.szm_prefix_lotsn
-		else:
-			digit = self.product_id.szm_digits_lotsn
-			prefix = self.product_id.szm_prefix_lotsn
-
-		serial_no = company.szm_lotsn + 1
-		serial_no_digit=len(str(company.szm_lotsn))
+    # Get Day of the year    
+    today     = datetime.date.today()
+    year      = datetime.date.today().year
+    day       = today.toordinal()
+    yearstart = datetime.datetime(year,1,1)
+    start     = yearstart.toordinal()
+    day_of_year = ((day-start)+1)
+    std_lotsn = False
+  
+    if result.szm_apply_method == "global":
+        if result.szm_method_lotsn == "cust":
+          digit = result.szm_digits_lotsn
+          prefix = result.szm_prefix_lotsn
+        else:
+          """ Form Settings Date based Lot/SN """
+          if result.szm_method_lotsn == "date":
+            digit  = 2
+            prefix = "T" + day_of_year + "-" + year + "-"
+          else:
+            std_lotsn = True
+    else:
+        if self.product_id.szm_method_lotsn == "cust":
+          digit = self.product_id.szm_digits_lotsn
+          prefix = self.product_id.szm_prefix_lotsn
+        else:
+          """ Form Product Date based Lot/SN """
+          if self.product_id.szm_method_lotsn == "date":
+            digit  = 2
+            prefix = "T" + day_of_year + "-" + year + "-"
+          else:
+            std_lotsn = True
+          
+    serial_no = company.szm_lotsn + 1
+    serial_no_digit=len(str(company.szm_lotsn))
 
 		diffrence = abs(serial_no_digit - digit)
 		if diffrence > 0:
