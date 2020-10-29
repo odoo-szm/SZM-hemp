@@ -15,7 +15,7 @@ class MrpProductProduce(models.TransientModel):
 
   # @api.multi
   def do_produce(self):
-  self._check_company()
+    self._check_company()
     company = self.env.company
     result = self.env['res.config.settings'].search([],order="id desc", limit=1)
     # Get Day of the year    
