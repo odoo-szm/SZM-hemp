@@ -69,14 +69,14 @@ class MrpProductProduce(models.TransientModel):
           lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
 
         print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
-
+        self.finished_lot_id = lot_serial_no
         return lot_serial_no
 
       # @api.multi
     def do_produce(self):
         self.ensure_one()
         if self.finished_lot_id == '':      
-          self.finished_lot_id = self._get_lotsn_szm(self)
+          self.finished_lot_id = self._get_lotsn_szm()
     
         """ Save the current wizard and go back to the MO. """
         self._record_production()
@@ -86,7 +86,7 @@ class MrpProductProduce(models.TransientModel):
     def action_generate_serial(self):
         self.ensure_one()
         product_produce_wiz = self.env.ref('mrp.view_mrp_product_produce_wizard', False)
-        self.finished_lot_id = self._get_lotsn_szm
+        self.finished_lot_id = self._get_lotsn_szm()
 #    self.finished_lot_id = self.env['stock.production.lot'].create({
 #        'product_id': self.product_id.id,
 #        'company_id': self.production_id.company_id.id
