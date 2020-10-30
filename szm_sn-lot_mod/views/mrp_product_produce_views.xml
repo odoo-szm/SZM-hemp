@@ -7,8 +7,9 @@
 
 			<field name="arch" type="xml">
 				<xpath expr="//field[@name='lot_id']" position="attributes">
-                    <attribute name="attrs">{'required': False,'invisible' : True}</attribute>
-                </xpath>				
+              <attribute name="attrs">{'required': False,'invisible' : True}</attribute>
+        </xpath>				
 			</field>
+
 		</record>
 </odoo>
