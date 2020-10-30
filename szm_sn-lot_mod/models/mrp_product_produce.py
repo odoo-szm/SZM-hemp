@@ -40,24 +40,22 @@ class MrpProductProduce(models.TransientModel):
         if result.szm_method_lotsn == "cust":
           digit = result.szm_digits_lotsn
           prefix = result.szm_prefix_lotsn
-        else:
+        elif result.szm_method_lotsn == "date":
           """ Form Settings Date based Lot/SN """
-          if result.szm_method_lotsn == "date":
-            digit  = 2
-            prefix = str(day_of_year) + "-" + str(year) + "-"
-          else:
-            std_lotsn = True
+          digit  = 2
+          prefix = str(day_of_year) + "-" + str(year) + "-"
+        else:
+          std_lotsn = True
     else:
         if self.product_id.szm_method_lotsn == "cust":
           digit = self.product_id.szm_digits_lotsn
           prefix = self.product_id.szm_prefix_lotsn
-        else:
+        elif self.product_id.szm_method_lotsn == "date":
           """ Form Product Date based Lot/SN """
-          if self.product_id.szm_method_lotsn == "date":
-            digit  = 2
-            prefix = str(day_of_year) + "-" + str(year) + "-"
-          else:
-            std_lotsn = True
+          digit  = 2
+          prefix = str(day_of_year) + "-" + str(year) + "-"
+        else:
+          std_lotsn = True
           
     serial_no = company.szm_lotsn + 1
     serial_no_digit=len(str(company.szm_lotsn))
