@@ -21,11 +21,8 @@ class MrpProductProduce(models.TransientModel):
 
   # @api.multi
   def do_produce(self):
-    self._check_company()
-    company = self.env.company
-    result = self.env['res.config.settings'].search([],order="id desc", limit=1)
     if self.finished_lot_id == '':      
-      self.finished_lot_id = self._get_lotsn_szm(result)
+      self.finished_lot_id = self._get_lotsn_szm
 
     """ Save the current wizard and go back to the MO. """
     # self.ensure_one()
@@ -38,7 +35,7 @@ class MrpProductProduce(models.TransientModel):
   def action_generate_serial(self):
     self.ensure_one()
     product_produce_wiz = self.env.ref('mrp.view_mrp_product_produce_wizard', False)
-    self.finished_lot_id = self._get_lotsn_szm(self)
+    self.finished_lot_id = self._get_lotsn_szm
 #    self.finished_lot_id = self.env['stock.production.lot'].create({
 #        'product_id': self.product_id.id,
 #        'company_id': self.production_id.company_id.id
@@ -54,6 +51,10 @@ class MrpProductProduce(models.TransientModel):
     }
 
   def _get_lotsn_szm(self):
+    self._check_company()
+    company = self.env.company
+    result = self.env['res.config.settings'].search([],order="id desc", limit=1)
+
     # Get Day of the year    
     year = fields.Date.today().year
     day_of_year = datetime.today().timetuple().tm_yday
