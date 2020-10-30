@@ -13,13 +13,7 @@ class MrpProductionInherit(models.Model):
         company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
         # Get Day of the year    
-#       to_day = datetime.date.today()
         year = fields.Date.today().year
-#       days = fields.Date.today().day
-#       yearstart = datetime.datetime(to_year,1,1)
-#       start = yearstart.toordinal()
-#       day_of_year = ((day-start)+1)
-#       day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1)
         day_of_year = datetime.today().timetuple().tm_yday
         std_lotsn = False
         digit = 9
@@ -32,7 +26,7 @@ class MrpProductionInherit(models.Model):
             elif result.szm_method_lotsn == "date":
               """ Form Settings Date based Lot/SN """
               digit  = 2
-              prefix = str(day_of_year) + "-" + str(year) + "-"
+              prefix = str(day_of_year) + "-" + str(year)[-2:] + "-"
             else:
               std_lotsn = True
         else:
@@ -42,7 +36,7 @@ class MrpProductionInherit(models.Model):
             elif self.product_id.szm_method_lotsn == "date":
               """ Form Product Date based Lot/SN """
               digit  = 2
-              prefix = str(day_of_year) + "-" + str(year) + "-"
+              prefix = str(day_of_year) + "-" + str(year)[-2:] + "-"
             else:
               std_lotsn = True
               

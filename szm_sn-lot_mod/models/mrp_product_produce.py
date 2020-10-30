@@ -24,14 +24,38 @@ class MrpProductProduce(models.TransientModel):
     self._check_company()
     company = self.env.company
     result = self.env['res.config.settings'].search([],order="id desc", limit=1)
+    if self.finished_lot_id == '':      
+      self.finished_lot_id = self._get_lotsn_szm(result)
+
+    """ Save the current wizard and go back to the MO. """
+    # self.ensure_one()
+    self._record_production()
+
+    return {
+        'type': 'ir.actions.act_window_close'
+        }
+        
+  def action_generate_serial(self):
+    self.ensure_one()
+    product_produce_wiz = self.env.ref('mrp.view_mrp_product_produce_wizard', False)
+    self.finished_lot_id = self._get_lotsn_szm(self)
+#    self.finished_lot_id = self.env['stock.production.lot'].create({
+#        'product_id': self.product_id.id,
+#        'company_id': self.production_id.company_id.id
+#    })
+    return {
+        'name': _('Produce'),
+        'type': 'ir.actions.act_window',
+        'view_mode': 'form',
+        'res_model': 'mrp.product.produce',
+        'res_id': self.id,
+        'view_id': product_produce_wiz.id,
+        'target': 'new',
+    }
+
+  def _get_lotsn_szm(self):
     # Get Day of the year    
-#   to_day = datetime.date.today()
     year = fields.Date.today().year
-#   days = fields.Date.today().day
-#   yearstart = datetime.datetime(to_year,1,1)
-#   start = yearstart.toordinal()
-#   day_of_year = ((day-start)+1)
-#   day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1)
     day_of_year = datetime.today().timetuple().tm_yday
     std_lotsn = False
     digit = 9
@@ -44,7 +68,7 @@ class MrpProductProduce(models.TransientModel):
         elif result.szm_method_lotsn == "date":
           """ Form Settings Date based Lot/SN """
           digit  = 2
-          prefix = str(day_of_year) + "-" + str(year) + "-"
+          prefix = str(day_of_year) + "-" + str(year)[-2:] + "-"
         else:
           std_lotsn = True
     else:
@@ -54,7 +78,7 @@ class MrpProductProduce(models.TransientModel):
         elif self.product_id.szm_method_lotsn == "date":
           """ Form Product Date based Lot/SN """
           digit  = 2
-          prefix = str(day_of_year) + "-" + str(year) + "-"
+          prefix = str(day_of_year) + "-" + str(year)[-2:] + "-"
         else:
           std_lotsn = True
           
@@ -81,12 +105,5 @@ class MrpProductProduce(models.TransientModel):
       lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
 
     print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
-    self.finished_lot_id = lot_serial_no
 
-    """ Save the current wizard and go back to the MO. """
-    # self.ensure_one()
-    self._record_production()
-
-    return {
-        'type': 'ir.actions.act_window_close'
-        }
+    return lot_serial_no
