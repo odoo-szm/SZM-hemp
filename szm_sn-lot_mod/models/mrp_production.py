@@ -12,13 +12,15 @@ class MrpProductionInherit(models.Model):
     def create_custom_lot_no(self,wo):
         company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
+        # Get Day of the year    
 #       to_day = datetime.date.today()
         year = fields.Date.today().year
-        days = fields.Date.today().day
+#       days = fields.Date.today().day
 #       yearstart = datetime.datetime(to_year,1,1)
 #       start = yearstart.toordinal()
 #       day_of_year = ((day-start)+1)
-        day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1)
+#       day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1)
+        day_of_year = datetime.today().timetuple().tm_yday
         std_lotsn = False
         digit = 9
         prefix = ''
