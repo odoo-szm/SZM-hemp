@@ -32,7 +32,7 @@
         'views/mrp_product_produce_views.xml',
         'views/res_config_setting_views.xml',
         'views/product_template_views.xml',
-        'views/stock_move_views.xml',
+        # 'views/stock_move_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [],
