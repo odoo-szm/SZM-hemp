@@ -19,7 +19,7 @@
     'website': "http://www.precisonline.com",
 
     'category': 'Manufacturing',
-    'version': '13.0.1.0',
+    'version': '13.0.1.1',
 
     # any module necessary for this one to work correctly
     'depends': ['base','mrp','stock'],
@@ -32,7 +32,7 @@
         'views/mrp_product_produce_views.xml',
         'views/res_config_setting_views.xml',
         'views/product_template_views.xml',
-        # 'views/stock_move_views.xml',
+        'views/stock_move_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [],
