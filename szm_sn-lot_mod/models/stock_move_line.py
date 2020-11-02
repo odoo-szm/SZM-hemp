@@ -6,6 +6,8 @@ from odoo.tools import date_utils
 
 class StockMoveLineInherit(models.Model):
     _inherit = 'stock.move.line'
+    
+    lot_id = fields.Many2one('stock.production.lot', string='Lot',required=False)
 
     def action_create_custom_lot_no_szm(self):
       company = self.env.company
