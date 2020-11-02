@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+
+from odoo import api, fields, models, _
+from datetime import datetime
+from odoo.tools import date_utils
+
 class StockMoveLineInherit(models.Model):
     _inherit = 'stock.move.line'
 
@@ -47,11 +53,12 @@ class StockMoveLineInherit(models.Model):
           lot_no = prefix+no+str(serial_no)
       else:
           lot_no = str(serial_no)
+      
       company.update({'serial_no' : serial_no})
       if std_lotsn:
         lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
       else:
-        lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id)
+        lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.production_id.company_id.id})
         
       self.lot_name = lot_serial_no
       return
