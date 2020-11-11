@@ -61,10 +61,6 @@ class StockMoveLineInherit(models.Model):
           lot_no = str(serial_no)
       
       company.update({'szm_lotsn' : serial_no})
-      if std_lotsn:
-        lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
-      else:
-        lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.production_id.company_id.id})
         
       self.lot_name = lot_serial_no
       return
