@@ -6,10 +6,14 @@ from odoo.tools import date_utils
 
 class StockMoveLineInherit(models.Model):
     _inherit = 'stock.move.line'
+        
+    @api.onchange('lot_name', 'lot_id')
+    def onchange_serial_number(self):
+      super(StockMoveLineInherit, self).onchange_serial_number()
+      if not self.lot_name:
+        self._get_lotsn_szm()
     
-    lot_id = fields.Many2one('stock.production.lot', string='Lot',required=False)
-
-    def action_create_custom_lot_no_szm(self):
+    def _get_lotsn_szm(self):
       company = self.env.company
       result = self.env['res.config.settings'].search([],order="id desc", limit=1)
       # Get Day of the year    
@@ -56,7 +60,7 @@ class StockMoveLineInherit(models.Model):
       else:
           lot_no = str(serial_no)
       
-      company.update({'serial_no' : serial_no})
+      company.update({'szm_lotsn' : serial_no})
       if std_lotsn:
         lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
       else:
