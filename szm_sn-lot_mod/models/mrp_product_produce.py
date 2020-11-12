@@ -60,7 +60,9 @@ class MrpProductProduce(models.TransientModel):
         serial_no = company.szm_lotsn + 1
         serial_no_digit=len(str(company.szm_lotsn))
 
-        diffrence = abs(serial_no_digit - digit)
+        # diffrence = abs(serial_no_digit - digit)
+        diffrence = (digit - serial_no_digit)
+
         if diffrence > 0:
           sn_pad = "0"
           for i in range(diffrence-1) :
@@ -69,7 +71,8 @@ class MrpProductProduce(models.TransientModel):
           sn_pad = ""
 
         if prefix != False:
-          lot_no = prefix + sn_pad + str(serial_no)
+          temp = str(serial_no)[-digit:]
+          lot_no = prefix + sn_pad + temp
         else:
           lot_no = str(serial_no)
 
