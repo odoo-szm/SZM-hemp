@@ -111,4 +111,3 @@ class MrpProductProduce(models.TransientModel):
             'view_id': product_produce_wiz.id,
             'target': 'new',
         }
-
