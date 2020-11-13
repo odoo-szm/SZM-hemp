@@ -2,8 +2,6 @@
 
 from odoo import api, fields, models, _
 from datetime import datetime
-from odoo.tools import date_utils
-
 
 class MrpProductionInherit(models.Model):
     """ Manufacturing Orders """
@@ -12,65 +10,54 @@ class MrpProductionInherit(models.Model):
     def create_custom_lot_no(self,wo):
         company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
-        # Get Day of the year    
-        year = fields.Date.today().year
-        day_of_year = datetime.today().timetuple().tm_yday
+#       to_day = datetime.date.today()
+        year = datetime.datetime.today().year
+#       day = to_day.toordinal()
+#       yearstart = datetime.datetime(to_year,1,1)
+#       start = yearstart.toordinal()
+#       day_of_year = ((day-start)+1)
+        day_of_year = date.fromordinal(date(year, 1, 1).toordinal() + days - 1)
         std_lotsn = False
-        digit = 9
-        prefix = ''
-        # DOY Padding
-        doy_digits = len(str(day_of_year))
-        diffrence = abs(doy_digits - 3)
-        if diffrence > 0:
-            doy_pad = "0"
-            for i in range(diffrence-1) :
-              doy_pad = doy_pad + "0"
-        else :
-            doy_pad = ""
       
-        string_doy = doy_pad + str(day_of_year)
-  
         if result.szm_apply_method == "global":
             if result.szm_method_lotsn == "cust":
               digit = result.szm_digits_lotsn
               prefix = result.szm_prefix_lotsn
-            elif result.szm_method_lotsn == "date":
-              """ Form Settings Date based Lot/SN """
-              digit  = 3
-              prefix = string_doy + "-" + str(year)[-2:] + "-"
             else:
-              std_lotsn = True
+              """ Form Settings Date based Lot/SN """
+              if result.szm_method_lotsn == "date":
+                digit  = 2
+                prefix = "T" + day_of_year + "-" + year + "-"
+              else:
+                std_lotsn = True
         else:
             if self.product_id.szm_method_lotsn == "cust":
               digit = self.product_id.szm_digits_lotsn
               prefix = self.product_id.szm_prefix_lotsn
-            elif self.product_id.szm_method_lotsn == "date":
-              """ Form Product Date based Lot/SN """
-              digit  = 3
-              prefix = string_doy + "-" + str(year)[-2:] + "-"
             else:
-              std_lotsn = True
-          
+              """ Form Product Date based Lot/SN """
+              if self.product_id.szm_method_lotsn == "date":
+                digit  = 2
+                prefix = "T" + day_of_year + "-" + year + "-"
+              else:
+                std_lotsn = True
+              
         serial_no = company.szm_lotsn + 1
         serial_no_digit=len(str(company.szm_lotsn))
 
-        # diffrence = abs(serial_no_digit - digit)
-        diffrence = (digit - serial_no_digit)
-
+        diffrence = abs(serial_no_digit - digit)
         if diffrence > 0:
-          sn_pad = "0"
-          for i in range(diffrence-1) :
-            sn_pad = sn_pad + "0"
+            no = "0"
+            for i in range(diffrence-1) :
+                no = no + "0"
         else :
-          sn_pad = ""
+            no = ""
 
         if prefix != False:
-          temp = str(serial_no)[-digit:]
-          lot_no = prefix + sn_pad + temp
+            lot_no = prefix+no+str(serial_no)
         else:
-          lot_no = str(serial_no)
-
-        company.update({'szm_lotsn' : serial_no})
+            lot_no = str(serial_no)
+        company.update({'serial_no' : serial_no})
         if std_lotsn:
           lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
         else:
