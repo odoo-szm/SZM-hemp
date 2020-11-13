@@ -4,23 +4,22 @@
 
     'summary': """
         SZM Lot modification on handling lot numbers at time of receipt and
-        when creating a manufacturing order. """,
+        when creating a manufacturing order. This has been modeled from
+        BrowseInfo @ www.browseinfo.in and other similar applications.""",
 
     'description': """
-        Global or Product specific Lot/SN automatic numbering schemes can be
-        defined. When a Lot/SN controlled item is received it will automaatically
-        create lot number based on lot rules defined for the product.
-        When MO is processed the user can automatically create lot number based on 
-        lot rules defined for the product. Date method is DDD-YY-NNN, where 
-        DDD = Day of the year, YY = Last 2 digits of the year, and NNN = Sequence 
-        number of lot.
+        When Lot controlled item is received, automaatically create lot number based
+        on lot rules defined for the product.
+        When MO is processed, create lot number based on the following formula.
+        DDD-YY-NN, where DDD = Day of the year, YY = Last 2 digits of the year, and
+        NN = Sequence number of lot for the day
     """,
 
     'author': "Precision Solutions",
     'website': "http://www.precisonline.com",
 
     'category': 'Manufacturing',
-    'version': '13.0.1.1',
+    'version': '13.0.1.5',
 
     # any module necessary for this one to work correctly
     'depends': ['base','mrp','stock'],
@@ -30,7 +29,7 @@
     
     # always loaded
     'data': [
-        # 'views/mrp_product_produce_views.xml',
+        'views/mrp_product_produce_views.xml',
         'views/res_config_setting_views.xml',
         'views/product_template_views.xml',
         # 'views/stock_move_views.xml',

@@ -24,6 +24,17 @@ class MrpProductProduce(models.TransientModel):
         std_lotsn = False
         digit = 9
         prefix = ''
+        # DOY Padding
+        doy_digits = len(str(day_of_year))
+        diffrence = abs(doy_digits - 3)
+        if diffrence > 0:
+            doy_pad = "0"
+            for i in range(diffrence-1) :
+              doy_pad = doy_pad + "0"
+        else :
+            doy_pad = ""
+      
+        string_doy = doy_pad + str(day_of_year)
   
         if result.szm_apply_method == "global":
             if result.szm_method_lotsn == "cust":
@@ -31,8 +42,8 @@ class MrpProductProduce(models.TransientModel):
               prefix = result.szm_prefix_lotsn
             elif result.szm_method_lotsn == "date":
               """ Form Settings Date based Lot/SN """
-              digit  = 2
-              prefix = str(day_of_year) + "-" + str(year)[-2:] + "-"
+              digit  = 3
+              prefix = string_doy + "-" + str(year)[-2:] + "-"
             else:
               std_lotsn = True
         else:
@@ -41,24 +52,27 @@ class MrpProductProduce(models.TransientModel):
               prefix = self.product_id.szm_prefix_lotsn
             elif self.product_id.szm_method_lotsn == "date":
               """ Form Product Date based Lot/SN """
-              digit  = 2
-              prefix = str(day_of_year) + "-" + str(year)[-2:] + "-"
+              digit  = 3
+              prefix = string_doy + "-" + str(year)[-2:] + "-"
             else:
               std_lotsn = True
           
         serial_no = company.szm_lotsn + 1
         serial_no_digit=len(str(company.szm_lotsn))
 
-        diffrence = abs(serial_no_digit - digit)
+        # diffrence = abs(serial_no_digit - digit)
+        diffrence = (digit - serial_no_digit)
+
         if diffrence > 0:
-          no = "0"
+          sn_pad = "0"
           for i in range(diffrence-1) :
-            no = no + "0"
+            sn_pad = sn_pad + "0"
         else :
-          no = ""
+          sn_pad = ""
 
         if prefix != False:
-          lot_no = prefix+no+str(serial_no)
+          temp = str(serial_no)[-digit:]
+          lot_no = prefix + sn_pad + temp
         else:
           lot_no = str(serial_no)
 
@@ -100,4 +114,3 @@ class MrpProductProduce(models.TransientModel):
             'view_id': product_produce_wiz.id,
             'target': 'new',
         }
-
