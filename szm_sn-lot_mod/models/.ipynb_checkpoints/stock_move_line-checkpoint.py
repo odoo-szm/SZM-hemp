@@ -58,8 +58,7 @@ class StockMoveLineInherit(models.Model):
       serial_no = company.szm_lotsn + 1
       serial_no_digit=len(str(company.szm_lotsn))
       # Determine SN Padding
-      # diffrence = abs(serial_no_digit - digit)
-      diffrence = (digit - serial_no_digit)
+      diffrence = abs(serial_no_digit - digit)
       if diffrence > 0:
           sn_pad = "0"
           for i in range(diffrence-1) :
@@ -69,8 +68,7 @@ class StockMoveLineInherit(models.Model):
       
 
       if prefix != False:
-          temp = str(serial_no)[-digit:]
-          lot_no = prefix + sn_pad + temp
+          lot_no = prefix+sn_pad+str(serial_no)
       else:
           lot_no = str(serial_no)
       

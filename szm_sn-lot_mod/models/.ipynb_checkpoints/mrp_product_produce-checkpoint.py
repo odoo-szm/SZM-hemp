@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, _
-from datetime import datetime
+from collections import Counter
+from datetime import datetime, date, timedelta
 from odoo.tools import date_utils
+from odoo.addons import decimal_precision as dp
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import float_compare, float_round
 
+class MrpProductProduce(models.TransientModel):
+    _inherit = 'mrp.product.produce'
 
-class MrpProductionInherit(models.Model):
-    """ Manufacturing Orders """
-    _inherit = 'mrp.production'
+    lot_id = fields.Many2one('stock.production.lot', string='Lot',required=False)
 
-    def create_custom_lot_no(self,wo):
+    def _get_lotsn_szm(self):
+        self._check_company()
         company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
+
         # Get Day of the year    
         year = fields.Date.today().year
         day_of_year = datetime.today().timetuple().tm_yday
@@ -54,9 +60,7 @@ class MrpProductionInherit(models.Model):
         serial_no = company.szm_lotsn + 1
         serial_no_digit=len(str(company.szm_lotsn))
 
-        # diffrence = abs(serial_no_digit - digit)
-        diffrence = (digit - serial_no_digit)
-
+        diffrence = abs(serial_no_digit - digit)
         if diffrence > 0:
           sn_pad = "0"
           for i in range(diffrence-1) :
@@ -65,8 +69,7 @@ class MrpProductionInherit(models.Model):
           sn_pad = ""
 
         if prefix != False:
-          temp = str(serial_no)[-digit:]
-          lot_no = prefix + sn_pad + temp
+          lot_no = prefix + sn_pad + str(serial_no)
         else:
           lot_no = str(serial_no)
 
@@ -74,21 +77,38 @@ class MrpProductionInherit(models.Model):
         if std_lotsn:
           lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
         else:
-          lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
+          lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
+
+        print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
+        self.finished_lot_id = lot_serial_no
         return lot_serial_no
 
-    def _workorders_create(self, bom, bom_data):
+      # @api.multi
+    def do_produce(self):
+        self.ensure_one()
+        if self.finished_lot_id == '':      
+          self.finished_lot_id = self._get_lotsn_szm()
+    
+        """ Save the current wizard and go back to the MO. """
+        self._record_production()
+        self._check_company()
+        return {'type': 'ir.actions.act_window_close'}
+        
+    def action_generate_serial(self):
+        self.ensure_one()
+        product_produce_wiz = self.env.ref('mrp.view_mrp_product_produce_wizard', False)
+        self.finished_lot_id = self._get_lotsn_szm()
+#    self.finished_lot_id = self.env['stock.production.lot'].create({
+#        'product_id': self.product_id.id,
+#        'company_id': self.production_id.company_id.id
+#    })
+        return {
+            'name': _('Produce'),
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mrp.product.produce',
+            'res_id': self.id,
+            'view_id': product_produce_wiz.id,
+            'target': 'new',
+        }
 
-        res = super(MrpProductionInherit, self)._workorders_create(bom,bom_data)
-        if self.product_id.tracking == 'serial' :
-            lot_id_list = []
-            for i in range(0,int(self.product_qty)) :
-                lot_id = self.create_custom_lot_no(res[0])
-                lot_id_list.append(lot_id.id)
-            res[0].finished_lot_id = lot_id_list[0]
-
-        elif self.product_id.tracking == 'lot' :
-            lot_id = self.create_custom_lot_no(res[0])
-            for lot in res:
-                lot.finished_lot_id = lot_id.id
-        return res
