@@ -19,10 +19,17 @@ class QualityAlert(models.Model):
         ('Recall', 'Withdrawal/Recall'),
         ('Other', 'Other')],
         string='Event', tracking=True, default='Other')
+    szm_dispose = fields.Selection([
+        ('rewrk', 'Rework'),
+        ('dstry', 'Destroyed'),
+        ('uai', 'Use As Is'),
+        ('rts', 'Return to Supplier'),
+        ('na', 'N/A')],
+        string='Disposition', tracking=True, default='N/A')
     szm_hold_tag = fields.Char('Hold Tag#')
     szm_prod_rpt_nbr = fields.Char('Product Report#')
     szm_mtl_qty = fields.Integer('Material Affected')
-    szm_disposition = fields.Html('Disposition')
+    szm_disposition = fields.Html('Verification/Followup')
     szm_disposition_date = fields.Datetime(string='Disposition Date', required=False, index=True, help="Date Dispositon Completed")
     szm_eval_review = fields.Html('Evaluation/Review')
     szm_eval_date = fields.Datetime(string='Evaluation Date', required=False, index=True, help="Date Evaluation Completed")

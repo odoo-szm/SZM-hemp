@@ -13,6 +13,7 @@
             </xpath>
               <xpath expr="//field[@name='lot_id']" position="after">
               <field name="szm_mtl_qty"/>
+              <field name="szm_dispose"/>
             </xpath>
             <xpath expr="//field[@name='reason_id']" position="after">
               <field name="szm_event"/>
@@ -40,8 +41,8 @@
               <field name="szm_ca_date" string="CAPA Date"/>
             </xpath>
             <xpath expr="//page[4]" position="replace">
-              <page name="szm_page_qa_two" string="Disposition">
-                <field name="szm_disposition_date" string="Disposition Date"/>
+              <page name="szm_page_qa_two" string="Verification/Followup">
+                <field name="szm_disposition_date" string="Verification/Followup Date"/>
                 <field name="szm_disposition"/>
               </page>
             </xpath>
