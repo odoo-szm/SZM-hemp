@@ -25,7 +25,7 @@ class QualityAlert(models.Model):
         ('uai', 'Use As Is'),
         ('rts', 'Return to Supplier'),
         ('na', 'N/A')],
-        string='Disposition', tracking=True, default='N/A')
+        string='Disposition', tracking=True)
     szm_hold_tag = fields.Char('Hold Tag#')
     szm_prod_rpt_nbr = fields.Char('Product Report#')
     szm_mtl_qty = fields.Integer('Material Affected')
