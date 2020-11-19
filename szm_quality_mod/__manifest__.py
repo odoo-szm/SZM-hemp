@@ -7,6 +7,8 @@
     'description': """
         09-17-20 -  Jeff Mueller, Add attributes to QA Module to facilitate
                     tracking of Quality control reporting for GFSI requirements.
+        11-19-20 -  Added Selection for disposition, renamed Dispositon Tab to Verification
+                    Followup
     """,
 
     'author': "Precision Solutions, Inc",
@@ -14,7 +16,7 @@
     "license": "AGPL-3",
     'category': 'Quality',
     'sequence': 10,
-    'version': '13.0.1.1',
+    'version': '13.0.1.2',
     'installable': True,
     'application': False,
     'auto_install': False,
