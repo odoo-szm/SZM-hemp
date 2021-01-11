@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Date        Who             Description
+Jan 11 2020 Jeff Mueller    Added various fields to acceptance page.
+-->
+
 <odoo>
   <data>
 <!-- Change List and Form views -->
@@ -16,9 +21,15 @@
                   <field name="szm_coo"/>
                   <field name="szm_manf_specs"/>
                   <field name="szm_coa_file"/>
+                  <field name="szm_coa_per_lot"/>
+                  <field name="szm_algrn"/>
                   <field name="szm_algrn_stmt"/>
                 </group>
                 <group name="szm_group_criteria_right">
+                  <field name="szm_compose"/>
+                  <field name="szm_prod_meth"/>
+                  <field name="szm_gras"/>
+                  <field name="szm_spec_req"/>
                   <field name="szm_acpt_doc"/>
                   <field name="szm_criteria"/>
                 </group>
@@ -42,9 +53,14 @@
                   <field name="szm_coo"/>
                   <field name="szm_manf_specs"/>
                   <field name="szm_coa_file"/>
+                  <field name="szm_algrn"/>
                   <field name="szm_algrn_stmt"/>
                 </group>
                 <group name="szm_group_criteria_right">
+                  <field name="szm_compose"/>
+                  <field name="szm_prod_meth"/>
+                  <field name="szm_gras"/>
+                  <field name="szm_spec_req"/>
                   <field name="szm_acpt_doc"/>
                   <field name="szm_criteria"/>
                 </group>
