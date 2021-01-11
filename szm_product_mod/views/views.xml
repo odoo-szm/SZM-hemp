@@ -28,8 +28,8 @@ Jan 11 2020 Jeff Mueller    Added various fields to acceptance page.
                 <group name="szm_group_criteria_right">
                   <field name="szm_compose"/>
                   <field name="szm_prod_meth"/>
-                  <field name="szm_gras"/>
                   <field name="szm_spec_req"/>
+                  <field name="szm_gras"/>
                   <field name="szm_acpt_doc"/>
                   <field name="szm_criteria"/>
                 </group>
@@ -59,8 +59,8 @@ Jan 11 2020 Jeff Mueller    Added various fields to acceptance page.
                 <group name="szm_group_criteria_right">
                   <field name="szm_compose"/>
                   <field name="szm_prod_meth"/>
-                  <field name="szm_gras"/>
                   <field name="szm_spec_req"/>
+                  <field name="szm_gras"/>
                   <field name="szm_acpt_doc"/>
                   <field name="szm_criteria"/>
                 </group>

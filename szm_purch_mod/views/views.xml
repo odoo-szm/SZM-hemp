@@ -101,7 +101,6 @@ Jan 11 2020 Jeff Mueller    Added Country of Origin and Tree View column
           </data>
       </field>
     </record>
-    </record>
     <!-- Change Res Partner views -->
     <record model="ir.ui.view" id="szm_view_partner_tree_extend">
       <field name="name">szm.view.partner.tree.extend</field>
