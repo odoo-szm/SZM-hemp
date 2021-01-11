@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 Date        Who             Description
-Jan 11 2020 Jeff Mueller    Added Country of Origin
+Jan 11 2020 Jeff Mueller    Added Country of Origin and Tree View column
 -->
 
 <odoo>
@@ -47,7 +47,7 @@ Jan 11 2020 Jeff Mueller    Added Country of Origin
                   <group string="Other Information" name="szm_price_list_group_mod1">
                     <field name="szm_manf_make"/>
                     <field name="szm_manf_model"/>
-                    <field name="szm_coo" placeholder="COO" class="o_address_country" options='{"no_open": True, "no_create": True}'
+                    <field name="szm_coo" placeholder="COO" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
                     <field name="company_id" options="{'no_create': True}"/>
                   </group>
                 </group>
@@ -97,6 +97,20 @@ Jan 11 2020 Jeff Mueller    Added Country of Origin
                   <field name="szm_status" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
                 </group>
               </group>
+            </xpath>
+          </data>
+      </field>
+    </record>
+    </record>
+    <!-- Change Res Partner views -->
+    <record model="ir.ui.view" id="szm_view_partner_tree_extend">
+      <field name="name">szm.view.partner.tree.extend</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_tree"/>
+      <field name="arch" type="xml">
+          <data>
+            <xpath expr="//field[@name='email']" position="after">
+              <field name="szm_status" optional="show"/>
             </xpath>
           </data>
       </field>
