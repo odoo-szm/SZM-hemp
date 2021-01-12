@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Date        Who             Description
+Jan 11 2020 Jeff Mueller    Added various fields to acceptance page.
+-->
+
 <odoo>
   <data>
 <!-- Change List and Form views -->
@@ -16,9 +21,15 @@
                   <field name="szm_coo"/>
                   <field name="szm_manf_specs"/>
                   <field name="szm_coa_file"/>
+                  <field name="szm_coa_per_lot"/>
+                  <field name="szm_algrn"/>
                   <field name="szm_algrn_stmt"/>
                 </group>
                 <group name="szm_group_criteria_right">
+                  <field name="szm_compose"/>
+                  <field name="szm_prod_meth"/>
+                  <field name="szm_spec_req"/>
+                  <field name="szm_gras"/>
                   <field name="szm_acpt_doc"/>
                   <field name="szm_criteria"/>
                 </group>
@@ -26,6 +37,36 @@
             </page>
           </xpath>
         </data>
+      </field>
+    </record>
+<!-- Change List and Form views Product -->
+    <record model="ir.ui.view" id="szm_product_normal_form_extend">
+      <field name="name">szm.product.normal.form.extend</field>
+      <field name="model">product.product</field>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="arch" type="xml">
+          <xpath expr="//page[@name='general_information']" position="before">
+            <page name="szm_accept_page" string="Acceptance">
+              <group name="szm_group_criteria">
+                <group name="szm_group_criteria_left">
+                  <field name="szm_risk"/>
+                  <field name="szm_coo"/>
+                  <field name="szm_manf_specs"/>
+                  <field name="szm_coa_file"/>
+                  <field name="szm_algrn"/>
+                  <field name="szm_algrn_stmt"/>
+                </group>
+                <group name="szm_group_criteria_right">
+                  <field name="szm_compose"/>
+                  <field name="szm_prod_meth"/>
+                  <field name="szm_spec_req"/>
+                  <field name="szm_gras"/>
+                  <field name="szm_acpt_doc"/>
+                  <field name="szm_criteria"/>
+                </group>
+              </group>
+            </page>
+          </xpath>
       </field>
     </record>
   </data>
