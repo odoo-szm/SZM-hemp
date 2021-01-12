@@ -2,11 +2,16 @@
 
 from odoo import models, fields, api
 
+# Date        Who             Description
+# Jan 11 2020 Jeff Mueller    Added Countryy of Origin to model
+
 class SupplierInfo(models.Model):
     _inherit = 'product.supplierinfo'
    
     szm_manf_make = fields.Char('Manufacturer')
     szm_manf_model = fields.Char('Manf. Part Number')
+    # Jan 11 2020 Changes
+    szm_coo = fields.Many2one('res.country', string='Country of Origin', ondelete='restrict')
 
 class Partner(models.Model):
     _inherit = 'res.partner'
