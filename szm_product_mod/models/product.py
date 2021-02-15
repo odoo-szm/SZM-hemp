@@ -23,11 +23,13 @@ class Product(models.Model):
     szm_acpt_doc = fields.Html('Release Documentation')
     szm_criteria = fields.Html('Release Criteria')
     
-    # Jan 11 2020 Changes
+    # Jan 11 2021 Changes
     szm_compose = fields.Text(string='Composition')
     szm_prod_meth = fields.Text(string='Production Method')
     szm_algrn = fields.Boolean('Contains Allergen', help="Contains Allergen Compound")
     szm_gras = fields.Boolean('GRAS', help="G.R.A.S.")
     szm_coa_per_lot = fields.Boolean('COA per Lot Required', help="COA required per lot")
     szm_spec_req = fields.Text(string='Special Requirements')
-    
+
+    # Feb 16 2021 Changes
+    szm_int_desc = fields.Text(string='Product Description')
