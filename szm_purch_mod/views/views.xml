@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 Date        Who             Description
-Jan 11 2020 Jeff Mueller    Added Country of Origin and Tree View column
+Jan 11 2021 Jeff Mueller    Added Country of Origin and Tree View column
 -->
 
 <odoo>
@@ -45,6 +45,7 @@ Jan 11 2020 Jeff Mueller    Added Country of Origin and Tree View column
                     </div>
                   </group>
                   <group string="Other Information" name="szm_price_list_group_mod1">
+                    <field name="szm_pref_supp"/>
                     <field name="szm_manf_make"/>
                     <field name="szm_manf_model"/>
                     <field name="szm_coo" placeholder="COO" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
@@ -62,6 +63,7 @@ Jan 11 2020 Jeff Mueller    Added Country of Origin and Tree View column
                 <field name="currency_id" groups="base.group_multi_currency"/>
                 <field name="date_start" optional="hide"/>
                 <field name="date_end" optional="hide"/>
+                <field name="szm_pref_supp"/>
                 <field name="szm_manf_make"/>
                 <field name="szm_manf_model"/>
                 <field name="min_qty"/>
