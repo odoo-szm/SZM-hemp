@@ -7,6 +7,7 @@
     'description': """
         10-08-20 -  Jeff Mueller, Add Product Attributes for quality.
         12-28-20 -  Jeff Mueller, Added Acceptance tab to Product normal view.
+        02-16-21 -  Jeff Mueller, Changed various atribute definitions and display criteria
     """,
 
     'author': "Precision Solutions, Inc",
@@ -14,7 +15,7 @@
     "license": "AGPL-3",
     'category': 'Product',
     'sequence': 10,
-    'version': '13.0.1.2',
+    'version': '13.0.1.3',
     'installable': True,
     'application': False,
     'auto_install': False,

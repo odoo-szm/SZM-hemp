@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 Date        Who             Description
-Jan 11 2020 Jeff Mueller    Added various fields to acceptance page.
+Jan 11 2021 Jeff Mueller    Added various fields to acceptance page.
+Feb 16 2021 Jeff Mueller    Changed visibility based on sale flag.
 -->
 
 <odoo>
@@ -17,15 +18,15 @@ Jan 11 2020 Jeff Mueller    Added various fields to acceptance page.
             <page name="szm_accept_page" string="Acceptance">
               <group name="szm_group_criteria">
                 <group name="szm_group_criteria_left">
-                  <field name="szm_risk"/>
-                  <field name="szm_coo"/>
-                  <field name="szm_manf_specs"/>
-                  <field name="szm_coa_file"/>
-                  <field name="szm_coa_per_lot"/>
+                  <field name="szm_risk" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
+                  <field name="szm_coo" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
+                  <field name="szm_manf_specs" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
+                  <field name="szm_coa_file" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
+                  <field name="szm_coa_per_lot" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
                   <field name="szm_algrn"/>
-                  <field name="szm_algrn_stmt"/>
+                  <field name="szm_algrn_stmt" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
                 </group>
-                <group name="szm_group_criteria_right">
+                <group name="szm_group_criteria_right" attrs="{'invisible': [['sale_ok',"=",True]]}">
                   <field name="szm_compose"/>
                   <field name="szm_prod_meth"/>
                   <field name="szm_spec_req"/>
@@ -49,14 +50,15 @@ Jan 11 2020 Jeff Mueller    Added various fields to acceptance page.
             <page name="szm_accept_page" string="Acceptance">
               <group name="szm_group_criteria">
                 <group name="szm_group_criteria_left">
-                  <field name="szm_risk"/>
-                  <field name="szm_coo"/>
-                  <field name="szm_manf_specs"/>
-                  <field name="szm_coa_file"/>
+                  <field name="szm_risk" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
+                  <field name="szm_coo" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
+                  <field name="szm_manf_specs" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
+                  <field name="szm_coa_file" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
+                  <field name="szm_coa_per_lot" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
                   <field name="szm_algrn"/>
-                  <field name="szm_algrn_stmt"/>
+                  <field name="szm_algrn_stmt" attrs="{'invisible': [['sale_ok',"=",True]]}"/>
                 </group>
-                <group name="szm_group_criteria_right">
+                <group name="szm_group_criteria_right" attrs="{'invisible': [['sale_ok',"=",True]]}">
                   <field name="szm_compose"/>
                   <field name="szm_prod_meth"/>
                   <field name="szm_spec_req"/>
