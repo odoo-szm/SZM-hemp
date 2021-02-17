@@ -16,7 +16,7 @@
     "license": "AGPL-3",
     'category': 'Purchasing',
     'sequence': 10,
-    'version': '13.0.1.4',
+    'version': '13.0.2.0',
     'installable': True,
     'application': False,
     'auto_install': False,
