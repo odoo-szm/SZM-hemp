@@ -7,6 +7,20 @@ Feb 16 2021 Jeff Mueller    Changed visibility based on sale flag.
 
 <odoo>
   <data>
+<!-- Header Form views -->
+    <record model="ir.ui.view" id="szm_product_form_extend">
+      <field name="name">szm.product.form.extend</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="arch" type="xml">
+        <data>
+          <xpath expr="//div[@name='options']" position="before">
+            <label class="oe_edit_only" for="szm_int_desc" string="Internal Description"/>
+            <h3><field name="szm_int_desc" placeholder="Internal Description"/></h3>
+          </xpath>
+        </data>
+      </field>
+    </record>
 <!-- Change List and Form views -->
     <record model="ir.ui.view" id="szm_product_form_extend_two">
       <field name="name">szm.product.form.extend.two</field>
