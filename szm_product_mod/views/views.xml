@@ -46,9 +46,6 @@ Feb 16 2021 Jeff Mueller    Changed visibility based on sale flag.
       <field name="model">product.product</field>
       <field name="inherit_id" ref="product.product_normal_form_view"/>
       <field name="arch" type="xml">
-          <xpath expr="//Field[@name='name']" position="after">
-            <h1><field name="szm_int_desc" placeholder="Internal Description"/></h1>
-          </xpath>
           <xpath expr="//page[@name='general_information']" position="before">
             <page name="szm_accept_page" string="Acceptance">
               <group name="szm_group_criteria">
