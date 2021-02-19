@@ -44,5 +44,7 @@ class Partner(models.Model):
       ('Pend', 'Pending'),
       ('Cond', 'Conditional'),
       ('Appr', 'Approved'),
+      ('Pref', 'Preferred'),
       ('Emergcy', 'Emergency'),
+      ('NA', 'N/A'),
       ('DisQual', 'Disqualified')], string="Supplier Status", help="Supplier Status", default='Pend', required=True)

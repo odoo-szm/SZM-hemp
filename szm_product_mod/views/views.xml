@@ -15,6 +15,7 @@ Feb 16 2021 Jeff Mueller    Changed visibility based on sale flag.
       <field name="arch" type="xml">
         <data>
           <xpath expr="//div[@name='options']" position="before">
+            <label class="oe_edit_only" for="szm_int_desc" string="Internal Description"/>
             <h3><field name="szm_int_desc" placeholder="Internal Description"/></h3>
           </xpath>
         </data>
