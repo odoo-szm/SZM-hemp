@@ -3,6 +3,7 @@
 Date        Who             Description
 Jan 11 2021 Jeff Mueller    Added various fields to acceptance page.
 Feb 16 2021 Jeff Mueller    Changed visibility based on sale flag.
+Mar 12 2021 Jeff Mueller    Changed Purchased and Sold Pages.
 -->
 
 <odoo>
@@ -29,22 +30,36 @@ Feb 16 2021 Jeff Mueller    Changed visibility based on sale flag.
       <field name="arch" type="xml">
         <data>
           <xpath expr="//form[@name='Product Template']/sheet[1]/notebook[1]" position="inside">
-            <page name="szm_accept_page" string="Acceptance">
+            <page name="szm_accept_page" string="Acceptance" attrs="{'invisible': [('purchase_ok','=',False)]}">
               <group name="szm_group_criteria">
                 <group name="szm_group_criteria_left">
-                  <field name="szm_risk" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
-                  <field name="szm_coo" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
-                  <field name="szm_manf_specs" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
-                  <field name="szm_coa_file" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
-                  <field name="szm_coa_per_lot" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
+                  <field name="szm_risk"/>
+                  <field name="szm_coo"/>
+                  <field name="szm_manf_specs"/>
+                  <field name="szm_coa_file"/>
+                  <field name="szm_coa_per_lot"/>
                   <field name="szm_algrn"/>
-                  <field name="szm_algrn_stmt" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
+                  <field name="szm_algrn_stmt"/>
                 </group>
-                <group name="szm_group_criteria_right" attrs="{'invisible': [('purchase_ok','=',False)]}">
+                <group name="szm_group_criteria_right">
                   <field name="szm_compose"/>
                   <field name="szm_prod_meth"/>
                   <field name="szm_spec_req"/>
                   <field name="szm_gras"/>
+                  <field name="szm_acpt_doc"/>
+                  <field name="szm_criteria"/>
+                </group>
+              </group>
+            </page>
+            <page name="szm_release_page" string="Release Criteria" attrs="{'invisible': [('purchase_ok','=',True)]}">
+              <group name="szm_group_criteria">
+                <group name="szm_group_criteria_left">
+                  <field name="szm_algrn"/>
+                </group>
+                <group name="szm_group_criteria_right">
+                  <field name="szm_compose"/>
+                  <field name="szm_prod_meth"/>
+                  <field name="szm_spec_req"/>
                   <field name="szm_acpt_doc"/>
                   <field name="szm_criteria"/>
                 </group>
@@ -61,22 +76,36 @@ Feb 16 2021 Jeff Mueller    Changed visibility based on sale flag.
       <field name="inherit_id" ref="product.product_normal_form_view"/>
       <field name="arch" type="xml">
           <xpath expr="//page[@name='general_information']" position="before">
-            <page name="szm_accept_page" string="Acceptance">
+            <page name="szm_accept_page" string="Acceptance" attrs="{'invisible': [('purchase_ok','=',False)]}">
               <group name="szm_group_criteria">
                 <group name="szm_group_criteria_left">
-                  <field name="szm_risk" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
-                  <field name="szm_coo" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
-                  <field name="szm_manf_specs" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
-                  <field name="szm_coa_file" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
-                  <field name="szm_coa_per_lot" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
+                  <field name="szm_risk"/>
+                  <field name="szm_coo"/>
+                  <field name="szm_manf_specs"/>
+                  <field name="szm_coa_file"/>
+                  <field name="szm_coa_per_lot"/>
                   <field name="szm_algrn"/>
-                  <field name="szm_algrn_stmt" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
+                  <field name="szm_algrn_stmt"/>
                 </group>
-                <group name="szm_group_criteria_right" attrs="{'invisible': [('purchase_ok','=',False)]}">
+                <group name="szm_group_criteria_right">
                   <field name="szm_compose"/>
                   <field name="szm_prod_meth"/>
                   <field name="szm_spec_req"/>
                   <field name="szm_gras"/>
+                  <field name="szm_acpt_doc"/>
+                  <field name="szm_criteria"/>
+                </group>
+              </group>
+            </page>
+            <page name="szm_release_page" string="Release Criteria" attrs="{'invisible': [('purchase_ok','=',True)]}">
+              <group name="szm_group_criteria">
+                <group name="szm_group_criteria_left">
+                  <field name="szm_algrn"/>
+                </group>
+                <group name="szm_group_criteria_right">
+                  <field name="szm_compose"/>
+                  <field name="szm_prod_meth"/>
+                  <field name="szm_spec_req"/>
                   <field name="szm_acpt_doc"/>
                   <field name="szm_criteria"/>
                 </group>

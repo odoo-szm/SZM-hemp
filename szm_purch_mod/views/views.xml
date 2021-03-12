@@ -2,6 +2,7 @@
 <!--
 Date        Who             Description
 Jan 11 2021 Jeff Mueller    Added Country of Origin and Tree View column
+Mar 12 2021 Jeff Mueller    Added Certification to Supplier Form
 -->
 
 <odoo>
@@ -84,6 +85,8 @@ Jan 11 2021 Jeff Mueller    Added Country of Origin and Tree View column
             <xpath expr="//field[@name='vat']" position="after">
               <field name="supplier_rank" attrs="{'invisible': [('company_type','=','person')]}"/>
               <field name="customer_rank" attrs="{'invisible': [('company_type','=','person')]}"/>
+              <field name="szm_priority" attrs="{'invisible': [('company_type','=','company')]}"/>
+              <field name="szm_type" attrs="{'invisible': [('company_type','=','company')]}"/>              
             </xpath>
             <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
               <group name="szm_group_extend" attrs="{'invisible': [('company_type','=','person')]}">
@@ -97,6 +100,7 @@ Jan 11 2021 Jeff Mueller    Added Country of Origin and Tree View column
                   <field name="szm_haccp" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
                   <field name="szm_risk" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
                   <field name="szm_status" widget="selection" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
+                  <field name="szm_certification" attrs="{'invisible': [('supplier_rank','&lt;=',0)]}"/>
                 </group>
               </group>
             </xpath>
@@ -114,6 +118,20 @@ Jan 11 2021 Jeff Mueller    Added Country of Origin and Tree View column
               <field name="szm_status" optional="show"/>
             </xpath>
           </data>
+      </field>
+    </record>
+    <!-- Change Res Partner Kanban views -->
+    <record model="ir.ui.view" id="szm_view_partner_kanban_extend">
+      <field name="name">szm.view.partner.kanban.extend</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <data>
+          <xpath expr="//kanban[1]/templates[1]/t[1]/div[1]/div[2]/field[@name='name']" position="after">
+            <div t-if="record.szm_priority.raw_value"><field name="szm_priority"/></div>
+            <div t-if="record.szm_type.raw_value"><field name="szm_type"/></div>
+          </xpath>
+        </data>
       </field>
     </record>
   </data>
