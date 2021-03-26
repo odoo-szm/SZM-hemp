@@ -5,6 +5,7 @@ from odoo import models, fields, api
 # Date        Who             Description
 # Jan 11 2021 Jeff Mueller    Added Country of Origin to model
 # Feb 16 2021 Jeff Mueller    Various changes to Purchasing
+# Mar 12 2021 Jeff Mueller    Added Certification and Contact Priority/Type
 
 class SupplierInfo(models.Model):
     _inherit = 'product.supplierinfo'
@@ -13,11 +14,8 @@ class SupplierInfo(models.Model):
     szm_manf_model = fields.Char('Manf. Part Number')
     # Jan 11 2021 Changes
     szm_coo = fields.Many2one('res.country', string='Country of Origin', ondelete='restrict')
-    # Feb 16 2021 Changes
-    szm_pref_supp = fields.Selection([
-      ('Yes', 'Yes'),
-      ('Pending', 'Pending'),
-      ('No', 'No')], string="Preferred Item/Supplier", help="Preferred Supplier for this item.", default='Yes')
+    # Feb 16 2021 Changes, March 12 2021, Change from selection to integer
+    szm_pref_supp_int = fields.Integer(string="Preferred Item/Supplier", help="Preferred Supplier rank for this item.")
 
 class Partner(models.Model):
     _inherit = 'res.partner'
@@ -27,7 +25,7 @@ class Partner(models.Model):
     szm_appr_questionnaire = fields.Selection([
       ('Yes', 'Yes'),
       ('Pending', 'Pending'),
-      ('No', 'No')], string="Approval Quastionnaire Completed", help="Vendor Approval Questionnaire Completed", default='No', required=True)
+      ('No', 'No')], string="Approval Questionnaire Completed", help="Vendor Approval Questionnaire Completed", default='No', required=True)
     szm_thirdparty_audit = fields.Selection([
       ('Yes', 'Yes'),
       ('Pending', 'Pending'),
@@ -48,3 +46,7 @@ class Partner(models.Model):
       ('Emergcy', 'Emergency'),
       ('NA', 'N/A'),
       ('DisQual', 'Disqualified')], string="Supplier Status", help="Supplier Status", default='Pend', required=True)
+    # Mar 12 2021 Changes
+    szm_certification = fields.Char('Certification')
+    szm_priority = fields.Integer(string="Contact Priority", help="Order in which contact falls in priority.")
+    szm_type = fields.Char('Contact Type')

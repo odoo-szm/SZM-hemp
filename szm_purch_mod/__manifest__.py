@@ -9,6 +9,7 @@
         09-30-20 -  Jeff Mueller, Removed Multi-Company requirement from view.
         01-11-21 -  Jeff Mueller, Added Country of Origin.
         02-16-21 -  Jeff Mueller, Various Purchasing Changes.
+        03-12-21 -  Jeff Mueller, Added Certification
     """,
 
     'author': "Precision Solutions, Inc",
@@ -16,7 +17,7 @@
     "license": "AGPL-3",
     'category': 'Purchasing',
     'sequence': 10,
-    'version': '13.0.2.1',
+    'version': '13.0.2.4',
     'installable': True,
     'application': False,
     'auto_install': False,
