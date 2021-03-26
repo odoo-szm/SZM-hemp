@@ -46,7 +46,7 @@ Mar 12 2021 Jeff Mueller    Added Certification to Supplier Form
                     </div>
                   </group>
                   <group string="Other Information" name="szm_price_list_group_mod1">
-                    <field name="szm_pref_supp"/>
+                    <field name="szm_pref_supp_int"/>
                     <field name="szm_manf_make"/>
                     <field name="szm_manf_model"/>
                     <field name="szm_coo" placeholder="COO" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
@@ -64,7 +64,7 @@ Mar 12 2021 Jeff Mueller    Added Certification to Supplier Form
                 <field name="currency_id" groups="base.group_multi_currency"/>
                 <field name="date_start" optional="hide"/>
                 <field name="date_end" optional="hide"/>
-                <field name="szm_pref_supp"/>
+                <field name="szm_pref_supp_int"/>
                 <field name="szm_manf_make"/>
                 <field name="szm_manf_model"/>
                 <field name="min_qty"/>
