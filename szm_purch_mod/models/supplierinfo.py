@@ -15,7 +15,7 @@ class SupplierInfo(models.Model):
     # Jan 11 2021 Changes
     szm_coo = fields.Many2one('res.country', string='Country of Origin', ondelete='restrict')
     # Feb 16 2021 Changes, March 12 2021, Change from selection to integer
-    szm_pref_supp = fields.Integer(string="Preferred Item/Supplier", help="Preferred Supplier rank for this item.")
+    szm_pref_supp = fields.Integer(string="Preferred Item/Supplier", help="Preferred Supplier rank for this item.", default=1)
 
 class Partner(models.Model):
     _inherit = 'res.partner'
