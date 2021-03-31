@@ -74,8 +74,7 @@ class MrpProductionInherit(models.Model):
 
         company.update({'szm_lotsn' : serial_no})
         if std_lotsn:
-        #   lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
-          lot_serial_no = ''
+          lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
         else:
           lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
         return lot_serial_no
