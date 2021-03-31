@@ -4,6 +4,8 @@ from odoo import api, fields, models, _
 from datetime import datetime
 from odoo.tools import date_utils
 
+# Date        Who             Description
+# Mar 31 2021 Jeff Mueller    Removed standard lot generation statement
 
 class MrpProductionInherit(models.Model):
     """ Manufacturing Orders """
@@ -72,7 +74,8 @@ class MrpProductionInherit(models.Model):
 
         company.update({'szm_lotsn' : serial_no})
         if std_lotsn:
-          lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
+        #   lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
+          lot_serial_no = ''
         else:
           lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
         return lot_serial_no
