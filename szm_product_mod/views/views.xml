@@ -46,12 +46,12 @@ Mar 12 2021 Jeff Mueller    Changed Purchased and Sold Pages.
                   <field name="szm_prod_meth"/>
                   <field name="szm_spec_req"/>
                   <field name="szm_gras"/>
-                  <field name="szm_acpt_doc"/>
-                  <field name="szm_criteria"/>
+                  <field name="szm_acpt_doc" string="Acceptance Documentation"/>
+                  <field name="szm_criteria" string="Acceptance Criteria"/>
                 </group>
               </group>
             </page>
-            <page name="szm_release_page" string="Release Criteria" attrs="{'invisible': [('purchase_ok','=',True)]}">
+            <page name="szm_release_page" string="Release" attrs="{'invisible': [('purchase_ok','=',True)]}">
               <group name="szm_group_criteria">
                 <group name="szm_group_criteria_left">
                   <field name="szm_algrn"/>
@@ -92,12 +92,12 @@ Mar 12 2021 Jeff Mueller    Changed Purchased and Sold Pages.
                   <field name="szm_prod_meth"/>
                   <field name="szm_spec_req"/>
                   <field name="szm_gras"/>
-                  <field name="szm_acpt_doc"/>
-                  <field name="szm_criteria"/>
-                </group>
+             	  <field name="szm_acpt_doc" string="Acceptance Documentation"/>
+				  <field name="szm_criteria" string="Acceptance Criteria"/>
+				</group>
               </group>
             </page>
-            <page name="szm_release_page" string="Release Criteria" attrs="{'invisible': [('purchase_ok','=',True)]}">
+            <page name="szm_release_page" string="Release" attrs="{'invisible': [('purchase_ok','=',True)]}">
               <group name="szm_group_criteria">
                 <group name="szm_group_criteria_left">
                   <field name="szm_algrn"/>
