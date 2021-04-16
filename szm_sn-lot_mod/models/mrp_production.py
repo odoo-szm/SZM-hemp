@@ -12,7 +12,7 @@ class MrpProductionInherit(models.Model):
     _inherit = 'mrp.production'
 
     def create_custom_lot_no(self,wo):
-        company = self.env.company
+        # company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
         # Get Day of the year    
         year = fields.Date.today().year
@@ -53,8 +53,8 @@ class MrpProductionInherit(models.Model):
             else:
               std_lotsn = True
           
-        serial_no = company.szm_lotsn + 1
-        serial_no_digit=len(str(company.szm_lotsn))
+        serial_no = self.product_id.szm_lotsn + 1
+        serial_no_digit=len(str(self.product_id.szm_lotsn))
 
         # diffrence = abs(serial_no_digit - digit)
         diffrence = (digit - serial_no_digit)
@@ -72,7 +72,7 @@ class MrpProductionInherit(models.Model):
         else:
           lot_no = str(serial_no)
 
-        company.update({'szm_lotsn' : serial_no})
+        self.product_id.update({'szm_lotsn' : serial_no})
         if std_lotsn:
           lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
         else:

@@ -12,3 +12,5 @@ class ProductTemplate(models.Model):
 				string='Lot/SN Method', default='std')
 		szm_digits_lotsn = fields.Integer(string='Digits :')
 		szm_prefix_lotsn = fields.Char(string='Prefix :')
+		# *04/16/2021 - Added product specific Serial Number
+		szm_lotsn = fields.Integer(string='LotSN Counter :')
