@@ -6,7 +6,6 @@ from odoo.tools import date_utils
 
 # Date        Who             Description
 # Mar 31 2021 Jeff Mueller    Removed standard lot generation statement
-# Apr 16 2021 Jeff Mueller    Move LotSN from Company to Product
 
 class MrpProductionInherit(models.Model):
     """ Manufacturing Orders """
