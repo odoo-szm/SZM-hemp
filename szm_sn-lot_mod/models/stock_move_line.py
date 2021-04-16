@@ -14,7 +14,7 @@ class StockMoveLineInherit(models.Model):
         self._get_lotsn_szm()
     
     def _get_lotsn_szm(self):
-      company = self.env.company
+      # company = self.env.company
       result = self.env['res.config.settings'].search([],order="id desc", limit=1)
       # Get Day of the year    
       year = fields.Date.today().year
@@ -55,8 +55,8 @@ class StockMoveLineInherit(models.Model):
           else:
             std_lotsn = True
             
-      serial_no = company.szm_lotsn + 1
-      serial_no_digit=len(str(company.szm_lotsn))
+      serial_no = self.product_id.szm_lotsn + 1
+      serial_no_digit=len(str(self.product_id.szm_lotsn))
       # Determine SN Padding
       # diffrence = abs(serial_no_digit - digit)
       diffrence = (digit - serial_no_digit)
@@ -74,7 +74,7 @@ class StockMoveLineInherit(models.Model):
       else:
           lot_no = str(serial_no)
       
-      company.update({'szm_lotsn' : serial_no})
+      self.product_id.update({'szm_lotsn' : serial_no})
         
       self.lot_name = lot_no
       return

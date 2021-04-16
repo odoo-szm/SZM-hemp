@@ -14,13 +14,15 @@
         lot rules defined for the product. Date method is DDD-YY-NNN, where 
         DDD = Day of the year, YY = Last 2 digits of the year, and NNN = Sequence 
         number of lot.
+        03-31-2021 - Changed lot_sn_no return
+        04-16-2021 - Moved Lot Counter to Product Template
     """,
 
     'author': "Precision Solutions",
     'website': "http://www.precisonline.com",
 
     'category': 'Manufacturing',
-    'version': '13.0.2.0',
+    'version': '13.0.3.0',
 
     # any module necessary for this one to work correctly
     'depends': ['base','mrp','stock'],
