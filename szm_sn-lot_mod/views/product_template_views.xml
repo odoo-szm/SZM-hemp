@@ -16,14 +16,14 @@ Apr 16 2021 Jeff Mueller    Added Product Level Lot/Serial number
               <div class="o_setting_right_pane" attrs="{'invisible': [('tracking', '=', 'none')]}">
                 <label for="szm_method_lotsn"/>
                 <field name="szm_method_lotsn" widget="radio"/>
-                <div class="content-group" attrs="{'invisible': ['|',('szm_method_lotsn', '=', 'std'),('szm_method_lotsn', '=', 'date')]}">
+				<label for="szm_lotsn"/>
+				<field name="szm_lotsn"/>
+				  <div class="content-group" attrs="{'invisible': ['|',('szm_method_lotsn', '=', 'std'),('szm_method_lotsn', '=', 'date')]}">
                     <div class="mt16">
                       <label for="szm_digits_lotsn"/>
                       <field name="szm_digits_lotsn"/>
                       <label for="szm_prefix_lotsn"/>
                       <field name="szm_prefix_lotsn"/>
-					  <label for="szm_lotsn"/>
-					  <field name="szm_lotsn"/>
                     </div>
                 </div>
               </div>
