@@ -13,7 +13,7 @@ class MrpProductionInherit(models.Model):
     _inherit = 'mrp.production'
 
     def create_custom_lot_no(self,wo):
-        # company = self.env.company
+        company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
         # Get Day of the year    
         year = fields.Date.today().year
