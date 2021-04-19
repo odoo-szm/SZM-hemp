@@ -22,7 +22,7 @@
     'website': "http://www.precisonline.com",
 
     'category': 'Manufacturing',
-    'version': '13.0.3.2',
+    'version': '13.0.3.3',
 
     # any module necessary for this one to work correctly
     'depends': ['base','mrp','stock'],
