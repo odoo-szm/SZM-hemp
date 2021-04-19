@@ -8,6 +8,9 @@ from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare, float_round
 
+# Date        Who             Description
+# Apr 16 2021 Jeff Mueller    Move LotSN from Company to Product
+
 class MrpProductProduce(models.TransientModel):
     _inherit = 'mrp.product.produce'
 
@@ -15,7 +18,7 @@ class MrpProductProduce(models.TransientModel):
 
     def _get_lotsn_szm(self):
         self._check_company()
-        company = self.env.company
+        # company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
 
         # Get Day of the year    
@@ -57,8 +60,8 @@ class MrpProductProduce(models.TransientModel):
             else:
               std_lotsn = True
           
-        serial_no = company.szm_lotsn + 1
-        serial_no_digit=len(str(company.szm_lotsn))
+        serial_no = self.product_id.szm_lotsn + 1
+        serial_no_digit=len(str(self.product_id.szm_lotsn))
 
         # diffrence = abs(serial_no_digit - digit)
         diffrence = (digit - serial_no_digit)
@@ -76,11 +79,11 @@ class MrpProductProduce(models.TransientModel):
         else:
           lot_no = str(serial_no)
 
-        company.update({'szm_lotsn' : serial_no})
+        self.product_id.update({'szm_lotsn' : serial_no})
         if std_lotsn:
           lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
         else:
-          lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
+          lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
 
         print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
         self.finished_lot_id = lot_serial_no
