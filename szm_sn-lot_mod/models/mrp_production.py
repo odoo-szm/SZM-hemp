@@ -6,13 +6,14 @@ from odoo.tools import date_utils
 
 # Date        Who             Description
 # Mar 31 2021 Jeff Mueller    Removed standard lot generation statement
+# Apr 16 2021 Jeff Mueller    Move LotSN from Company to Product
 
 class MrpProductionInherit(models.Model):
     """ Manufacturing Orders """
     _inherit = 'mrp.production'
 
     def create_custom_lot_no(self,wo):
-        # company = self.env.company
+        company = self.env.company
         result = self.env['res.config.settings'].search([],order="id desc", limit=1)
         # Get Day of the year    
         year = fields.Date.today().year

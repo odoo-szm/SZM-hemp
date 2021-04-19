@@ -4,6 +4,9 @@ from odoo import api, fields, models, _
 from datetime import datetime
 from odoo.tools import date_utils
 
+# Date        Who             Description
+# Apr 16 2021 Jeff Mueller    Move LotSN from Company to Product
+
 class StockMoveLineInherit(models.Model):
     _inherit = 'stock.move.line'
         

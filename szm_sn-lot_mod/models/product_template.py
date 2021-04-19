@@ -2,6 +2,10 @@
 
 from odoo import api, fields, models, _
 
+# Date        Who             Description
+# Apr 16 2021 Jeff Mueller    Move LotSN from Company to Product
+
+
 class ProductTemplate(models.Model):
 		_inherit = "product.template"
 
