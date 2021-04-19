@@ -83,7 +83,7 @@ class MrpProductProduce(models.TransientModel):
         if std_lotsn:
           lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
         else:
-          lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': self.env.company.id})
+          lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
 
         print('lot_serial_nooooooooooooooooooooooooooooooooooooooo',lot_serial_no.name)
         self.finished_lot_id = lot_serial_no
