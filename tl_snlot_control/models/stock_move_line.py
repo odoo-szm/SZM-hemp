@@ -11,8 +11,8 @@ class StockMoveLineInherit(models.Model):
     _inherit = 'stock.move.line'
         
     @api.onchange('lot_name', 'lot_id')
-    def onchange_serial_number(self):
-      super(StockMoveLineInherit, self).onchange_serial_number()
+    def _onchange_serial_number(self):
+      super(StockMoveLineInherit, self)._onchange_serial_number()
       if not self.lot_name:
         self._get_lotsn_szm()
     
@@ -58,8 +58,8 @@ class StockMoveLineInherit(models.Model):
           else:
             std_lotsn = True
             
-      serial_no = self.product_id.szm_lotsn + 1
-      serial_no_digit=len(str(self.product_id.szm_lotsn))
+      serial_no = self.company_id.szm_lotsn + 1
+      serial_no_digit=len(str(self.company_id.szm_lotsn))
       # Determine SN Padding
       # diffrence = abs(serial_no_digit - digit)
       diffrence = (digit - serial_no_digit)
@@ -77,7 +77,7 @@ class StockMoveLineInherit(models.Model):
       else:
           lot_no = str(serial_no)
       
-      self.product_id.update({'szm_lotsn' : serial_no})
+      self.company_id.update({'szm_lotsn' : serial_no})
         
       self.lot_name = lot_no
       return

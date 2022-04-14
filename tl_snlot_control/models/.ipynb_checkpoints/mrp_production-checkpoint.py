@@ -4,6 +4,9 @@ from odoo import api, fields, models, _
 from datetime import datetime
 from odoo.tools import date_utils
 
+# Date        Who             Description
+# Mar 31 2021 Jeff Mueller    Removed standard lot generation statement
+# Apr 16 2021 Jeff Mueller    Move LotSN from Company to Product
 
 class MrpProductionInherit(models.Model):
     """ Manufacturing Orders """
@@ -51,10 +54,12 @@ class MrpProductionInherit(models.Model):
             else:
               std_lotsn = True
           
-        serial_no = company.szm_lotsn + 1
-        serial_no_digit=len(str(company.szm_lotsn))
+        serial_no = self.company.szm_lotsn + 1
+        serial_no_digit=len(str(self.company.szm_lotsn))
 
-        diffrence = abs(serial_no_digit - digit)
+        # diffrence = abs(serial_no_digit - digit)
+        diffrence = (digit - serial_no_digit)
+
         if diffrence > 0:
           sn_pad = "0"
           for i in range(diffrence-1) :
@@ -63,13 +68,14 @@ class MrpProductionInherit(models.Model):
           sn_pad = ""
 
         if prefix != False:
-          lot_no = prefix + sn_pad + str(serial_no)
+          temp = str(serial_no)[-digit:]
+          lot_no = prefix + sn_pad + temp
         else:
           lot_no = str(serial_no)
 
-        company.update({'szm_lotsn' : serial_no})
+        self.company.update({'szm_lotsn' : serial_no})
         if std_lotsn:
-          lot_serial_no = self.env['stock.production.lot'].create({'product_id': self.product_id.id,'company_id': self.production_id.company_id.id})
+          lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
         else:
           lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
         return lot_serial_no

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "szm_sn-lot_mod",
+    'name': "tl_snlot_control",
 
     'summary': """
-        SZM Lot modification on handling lot numbers at time of receipt and
+        Tenacious Labs Lot modification on handling lot numbers at time of receipt and
         when creating a manufacturing order. """,
 
     'description': """
@@ -16,13 +16,14 @@
         number of lot.
         03-31-2021 - Changed lot_sn_no return
         04-16-2021 - Moved Lot Counter to Product Template
+        04-08-2022 - Upgraded code for version 15.
     """,
 
-    'author': "Precision Solutions",
-    'website': "http://www.precisonline.com",
-
-    'category': 'Manufacturing',
-    'version': '13.0.3.4',
+    'author'   : "Jeff Mueller",
+    'website'  : "http://www.jrmsyssol.com",
+    'license'  : 'LGPL-3',
+    'category' : 'Manufacturing',
+    'version'  : '15.0.1.3',
 
     # any module necessary for this one to work correctly
     'depends': ['base','mrp','stock'],
@@ -32,10 +33,8 @@
     
     # always loaded
     'data': [
-        # 'views/mrp_product_produce_views.xml',
         'views/res_config_setting_views.xml',
         'views/product_template_views.xml',
-        # 'views/stock_move_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [],
