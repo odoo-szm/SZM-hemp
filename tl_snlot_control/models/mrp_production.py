@@ -54,8 +54,8 @@ class MrpProductionInherit(models.Model):
             else:
               std_lotsn = True
           
-        serial_no = self.product_id.szm_lotsn + 1
-        serial_no_digit=len(str(self.product_id.szm_lotsn))
+        serial_no = self.company.szm_lotsn + 1
+        serial_no_digit=len(str(self.company.szm_lotsn))
 
         # diffrence = abs(serial_no_digit - digit)
         diffrence = (digit - serial_no_digit)
@@ -73,7 +73,7 @@ class MrpProductionInherit(models.Model):
         else:
           lot_no = str(serial_no)
 
-        self.product_id.update({'szm_lotsn' : serial_no})
+        self.company.update({'szm_lotsn' : serial_no})
         if std_lotsn:
           lot_serial_no = self.env['stock.production.lot'].create({'name' : lot_no,'product_id':self.product_id.id,'company_id': company.id,'use_next_on_work_order_id' : wo.id})
         else:
