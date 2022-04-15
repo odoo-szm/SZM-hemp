@@ -23,7 +23,7 @@
     'website'  : "http://www.jrmsyssol.com",
     'license'  : 'LGPL-3',
     'category' : 'Manufacturing',
-    'version'  : '15.0.1.4',
+    'version'  : '15.0.1.5',
 
     # any module necessary for this one to work correctly
     'depends': ['base','mrp','stock'],
