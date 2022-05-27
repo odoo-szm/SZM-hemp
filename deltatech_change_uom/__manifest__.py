@@ -9,7 +9,7 @@
     'author': 'Terrabit, Dorin Hongu',
     'website': 'https://www.terrabit.ro',
     'category': 'Accounting',
-    'depends': ['product', 'account', 'stock', 'sale', 'purchase'],
+    'depends': ['product', 'account', 'stock', 'sale_management', 'purchase'],
     'installable': True,
     'license': 'LGPL-3',
     'auto_install': False,
