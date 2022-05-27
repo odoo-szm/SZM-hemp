@@ -23,17 +23,18 @@
     'website'  : "http://www.jrmsyssol.com",
     'license'  : 'LGPL-3',
     'category' : 'Manufacturing',
-    'version'  : '15.0.1.5',
+    'version'  : '15.0.1.6',
 
     # any module necessary for this one to work correctly
     'depends': ['base','mrp','stock'],
     'installable': True,
+    'license': 'LGPL-3',
     'auto_install': False,
     'application': False,
     
     # always loaded
     'data': [
-        'views/res_config_setting_views.xml',
+        # 'views/res_config_setting_views.xml',
         'views/product_template_views.xml',
     ],
     # only loaded in demonstration mode
