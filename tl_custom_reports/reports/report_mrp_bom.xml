@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="tl_custom_reports.tl_report_mrp_bom_inherit" inherit_id="mrp.report_mrp_bom">
-    <xpath expr="//div[hasclass('container o_mrp_bom_report_page')]" position="replace">
+    <xpath expr="//t[@t-name='mrp.report_mrp_bom']" position="replace">
       <div class="container o_mrp_bom_report_page">
         <t t-if="data.get('components') or data.get('lines') or data.get('operations')">
           <div class="row">
@@ -109,7 +109,7 @@
                       <td class="text-right">
                         <!-- <span><t t-esc="data['price']/data['bom_qty']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}"/></span> -->
                         <span>
-                          <t t-esc="'%.6f'%data['price']/data['bom_qty']"/>
+                          <t t-esc="'%.6f'%(data['price'] / data['bom_qty'])"/>
                         </span>
                       </td>
                       <td class="text-right">

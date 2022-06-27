@@ -25,6 +25,7 @@
     'data': [
         "views/res_company.xml",
         "reports/classic_report_saleorder.xml",
+        "reports/custom_report_saleorder.xml",
         "reports/fancy_report_saleorder.xml",
         "reports/modern_report_saleorder.xml",
         "reports/odoo_standard_report_saleorder.xml",

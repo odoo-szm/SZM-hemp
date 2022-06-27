@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="tl_bom_enhancements.tl_report_mrp_bom_line_inherit" inherit_id="mrp.report_mrp_bom_line">
+  <template id="tl_custom_reports.tl_report_mrp_bom_line_inherit" inherit_id="mrp.report_mrp_bom_line">
     <xpath expr="//t[@t-name='mrp.report_mrp_bom_line']" position="replace">
       <t t-set="currency" t-value="data['currency']"/>
       <t t-foreach="data['components']" t-as="l">
