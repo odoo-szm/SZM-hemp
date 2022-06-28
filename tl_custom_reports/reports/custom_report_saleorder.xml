@@ -17,6 +17,9 @@
             <t t-if="doc.company_id.sale_template == 'odoo_standard'">
               <t t-call="tl_custom_reports.odoo_std_report_saleorder_document" t-lang="doc.partner_id.lang"/>
             </t>
+            <t t-if="doc.company_id.sale_template == 'tl'">
+              <t t-call="tl_custom_reports.tl_report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
           </t>
         </t>
       </xpath>
