@@ -15,7 +15,7 @@
     'website': 'https://www.jrmsyssol.com',
 
     'category': 'Sales',
-    'version': '15.0.0.1',
+    'version': '15.0.0.2',
     'license': 'LGPL-3',
     'depends': ['base', 'account', 'sale', 'sale_management', 'mrp'],
     'installable': True,
@@ -29,6 +29,7 @@
         "reports/fancy_report_saleorder.xml",
         "reports/modern_report_saleorder.xml",
         "reports/odoo_standard_report_saleorder.xml",
+        "reports/tl_report_saleorder.xml",
         "reports/report_mrp_bom.xml",
         "reports/report_mrp_bom_line.xml",
              ],

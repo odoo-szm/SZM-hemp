@@ -10,12 +10,10 @@ class res_company(models.Model):
             ('classic', 'Classic'),
             ('modern', 'Modern'),
             ('odoo_standard', 'Odoo Standard'),
+            ('tl', 'TL Custom'),
         ], 'Sale')
-
-class res_company(models.Model):
-    _inherit = "res.company"
-
     bank_account_id = fields.Many2one('res.partner.bank', 'Bank Account')
+    t_of_c = fields.Char('Terms of Conditions')
 
 class res_partner_bank(models.Model):
     _inherit = "res.partner.bank"

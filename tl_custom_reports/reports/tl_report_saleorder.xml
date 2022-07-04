@@ -46,12 +46,26 @@
         </div>
       </div>
 
+      <div class="footer">
+        <div class="text-left" style="border-top: 1px solid black;">
+          <span t-field="company.t_of_c" />
+        </div>
+        <div class="text-center">
+          <div t-if="report_type == 'pdf'" class="text-muted">
+              Page:
+              <span class="page"/>
+              of
+              <span class="topage"/>
+          </div>
+        </div>
+      </div>
+
       <t t-call="web.external_layout">
         <t t-set="o" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
         <div class="page">
           <div class="oe_structure" />
           <div >
-            <div style=" background-color:  #3498DB;">
+            <div style=" background-color:#c5c8c9;">
               <h2>
                 <span >
                   <font color="#fff">Order# </font>

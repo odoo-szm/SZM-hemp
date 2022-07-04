@@ -10,6 +10,7 @@
         <field name="parent_id" position="after">
           <group colspan="2" col="2">
             <field name="sale_template"/>
+            <field name="t_of_c"/>
           </group>
         </field>
       </field>
