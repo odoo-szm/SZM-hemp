@@ -14,5 +14,5 @@ class StockQuant(models.Model):
 
     tl_adj_reas_id = fields.Many2one(
         'tl.adj.codes', 'Adjustment Code',
-        change_default=True, required=True, help="Select adjustment reason.")
+        change_default=True, required=False, help="Select adjustment reason.")
 

@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_stock_quant_user,stock.quant user,model_stock_quant,stock.group_stock_user,1,1,1,0
-access_stock_quant_all,stock.quant all users,model_stock_quant,base.group_user,1,0,0,0
+access_inv_adj_user,tl.adj.codes user,model_tl_adj_codes,tl_inv_enhancements.group_tl_adj_user,1,1,1,0
+access_inv_adj_all,tl.adj.codes all users,model_tl_adj_codes,tl_inv_enhancements.group_tl_adj_all,1,0,0,0
+

@@ -23,6 +23,7 @@
     'data': [
       "views/tl_adj_codes.xml",
       "views/stock_quant.xml",
+      "security/inv_security.xml",  
       "security/ir.model.access.csv",
       ],
     'demo': [],
