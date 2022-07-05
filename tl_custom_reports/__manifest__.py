@@ -15,7 +15,7 @@
     'website': 'https://www.jrmsyssol.com',
 
     'category': 'Sales',
-    'version': '15.0.0.2',
+    'version': '15.0.0.3',
     'license': 'LGPL-3',
     'depends': ['base', 'account', 'sale', 'sale_management', 'mrp'],
     'installable': True,

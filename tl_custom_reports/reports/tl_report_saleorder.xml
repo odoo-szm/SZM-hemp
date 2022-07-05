@@ -241,11 +241,6 @@
               <span t-field="doc.note" />
             </p>
           </div>
-          <div style=" background-color: #c5c8c9; color:#fff !important; font:15px lucida-console,sans-serif !important;">
-            <p>
-              <strong>ToC</strong>
-            </p>
-          </div>
           <div class="oe_structure"/>
         </div>
       </t>
