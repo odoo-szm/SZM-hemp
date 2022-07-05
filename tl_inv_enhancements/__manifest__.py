@@ -23,7 +23,6 @@
     'data': [
       "views/stock_quant.xml",
       "security/ir.model.access.csv",
-      "security/inv_security.xml",
       ],
     'demo': [],
 }
