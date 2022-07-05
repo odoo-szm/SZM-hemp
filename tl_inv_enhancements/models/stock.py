@@ -12,7 +12,7 @@ class TLAdjustmentCode(models.Model):
 class StockQuant(models.Model):
     _inherit = "stock.quant"
 
-    tl_adj_reas = fields.Many2one(
-        'tl_inv_enhancements.tl.adj.codes', 'Adjustment Code',
+    tl_adj_reas_id = fields.Many2one(
+        'tl.adj.codes', 'Adjustment Code',
         change_default=True, required=True, help="Select adjustment reason.")
 
