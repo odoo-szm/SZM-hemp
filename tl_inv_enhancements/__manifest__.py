@@ -21,6 +21,7 @@
     'application': False,
 
     'data': [
+      "views/tl_adj_codes.xml",
       "views/stock_quant.xml",
       "security/ir.model.access.csv",
       ],
