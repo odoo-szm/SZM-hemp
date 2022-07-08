@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="tl_custom_reports.tl_report_mrp_bom_line_inherit" inherit_id="mrp.report_mrp_bom_line">
+    <xpath expr="//t[@t-name='mrp.report_mrp_bom_line']" position="replace">
+      <t t-set="currency" t-value="data['currency']"/>
+      <t t-foreach="data['components']" t-as="l">
+        <t t-set="space_td" t-value="'margin-left: '+ str(l['level'] * 20) + 'px;'"/>
+        <tr class="o_mrp_bom_report_line" t-att-data-id="l['child_bom']" t-att-parent_id="l['parent_id']" t-att-data-line="l['line_id']" t-att-data-product_id="l['prod_id']" t-att-data-qty="l['prod_qty']" t-att-data-level="l['level']">
+          <td>
+            <div t-att-style="space_td">
+              <t t-if="l['child_bom']">
+                <div t-att-data-function="'get_bom'" class="o_mrp_bom_unfoldable fa fa-fw fa-caret-right" style="display:inline-block;" role="img" aria-label="Unfold" title="Unfold"/>
+              </t>
+              <div t-att-class="None if l['child_bom'] else 'o_mrp_bom_no_fold'" style="display:inline-block;">
+                <a href="#" t-att-data-res-id="l['prod_id']" t-att-data-model="'product.product'" class="o_mrp_bom_action">
+                  <t t-esc="l['prod_name']"/>
+                </a>
+              </div>
+              <t t-if="l['phantom_bom']">
+                <div class="fa fa-dropbox" title="This is a BoM of type Kit!" role="img" aria-label="This is a BoM of type Kit!"/>
+              </t>
+            </div>
+          </td>
+          <td name="td_mrp_bom">
+            <div>
+              <a href="#" t-att-data-res-id="l['child_bom']" t-att-data-model="'mrp.bom'" class="o_mrp_bom_action">
+                <t t-esc="l['code']"/>
+              </a>
+            </div>
+          </td>
+          <td class="text-right">
+            <span>
+              <t t-esc="l['prod_qty']" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;decimal_precision&quot;: &quot;Product Unit of Measure&quot;}"/>
+            </span>
+          </td>
+          <td groups="uom.group_uom">
+            <span>
+              <t t-esc="l['prod_uom']"/>
+            </span>
+          </td>
+          <td class="o_mrp_prod_cost text-right">
+            <!-- <span t-esc="l['prod_cost']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}"/> -->
+            <span t-esc="'%.6f'%(l['prod_cost'])"/>
+          </td>
+          <td class="o_mrp_bom_cost text-right">
+            <!-- <span t-esc="l['total']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}"/> -->
+            <span t-esc="'%.6f'%(l['total'])"/>
+          </td>
+          <td>
+            <span>
+              <t t-if="l['attachments']">
+                <a href="#" role="button" t-att-data-res-id="l['attachments'].ids" t-att-data-model="'mrp.document'" class="o_mrp_show_attachment_action fa fa-fw o_button_icon fa-files-o"/>
+              </t>
+            </span>
+          </td>
+        </tr>
+      </t>
+      <t t-if="data['operations']" name="operations">
+        <t t-set="space_td" t-value="'margin-left: '+ str(data['level'] * 20) + 'px;'"/>
+        <tr class="o_mrp_bom_report_line o_mrp_bom_cost" t-att-data-product_id="data['product'].id" t-att-data-id="'operation-' + str(data['bom'].id)" t-att-data-bom-id="data['bom'].id" t-att-parent_id="data['bom'].id" t-att-data-qty="data['bom_qty']" t-att-data-level="data['level']">
+          <td name="td_opr">
+            <span t-att-style="space_td"/>
+            <span class="o_mrp_bom_unfoldable fa fa-fw fa-caret-right" t-att-data-function="'get_operations'" role="img" aria-label="Unfold" title="Unfold"/>
+                    Operations
+          </td>
+          <t t-foreach="range(data.get('extra_column_count', 0))" t-as="index">
+            <td/>
+          </t>
+          <td/>
+          <td class="text-right">
+            <span t-esc="data['operations_time']" t-options="{&quot;widget&quot;: &quot;float_time&quot;}"/>
+          </td>
+          <td groups="uom.group_uom">
+            <span>Minutes</span>
+          </td>
+          <td/>
+          <td class="o_mrp_bom_cost text-right">
+            <!-- <span t-esc="data['operations_cost']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}"/> -->
+            <span t-esc="'%.6f'%(data['operations_cost'])"/>
+          </td>
+          <td/>
+        </tr>
+      </t>
+      <t t-if="data['byproducts']">
+        <t t-set="space_td" t-value="'margin-left: '+ str(data['level'] * 20) + 'px;'"/>
+        <tr class="o_mrp_bom_report_line o_mrp_bom_cost" t-att-data-id="'byproduct-' + str(data['bom'].id)" t-att-data-bom-id="data['bom'].id" t-att-parent_id="data['bom'].id" t-att-data-qty="data['bom_qty']" t-att-data-level="data['level']" t-att-data-total="data['total']">
+          <td name="td_byproducts">
+            <span t-att-style="space_td"/>
+            <span class="o_mrp_bom_unfoldable fa fa-fw fa-caret-right" t-att-data-function="'get_byproducts'" role="img" aria-label="Unfold" title="Unfold"/>
+                    By-Products
+          </td>
+          <t t-foreach="range(data.get('extra_column_count', 0))" t-as="index">
+            <td/>
+          </t>
+          <td/>
+          <td class="text-right">
+            <span t-esc="data['byproducts_total']"/>
+          </td>
+          <td groups="uom.group_uom"/>
+          <td/>
+          <td class="text-right">
+            <span t-esc="data['byproducts_cost']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}"/>
+          </td>
+        </tr>
+      </t>
+    </xpath>
+  </template>
+</odoo>
