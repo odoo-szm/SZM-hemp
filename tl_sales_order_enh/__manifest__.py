@@ -15,7 +15,7 @@
     "license": "LGPL-3",
     'category': 'Sales',
     'sequence': 13,
-    'version': '15.0.1.0',
+    'version': '0.1.1',
     'installable': True,
     'application': False,
     'auto_install': False,

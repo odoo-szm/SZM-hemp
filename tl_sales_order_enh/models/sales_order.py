@@ -3,7 +3,7 @@
 from odoo import models, fields, api, _
 
 # Date        Who             Description
-# Aug 19 2022 Jeff Mueller    Added Fields to model
+# Aug 23 2022 Jeff Mueller    Changed order of selection in compute_delivery_status
 
 
 class SalesOrder(models.Model):
@@ -20,9 +20,7 @@ class SalesOrder(models.Model):
         for rec in self:
             pickings = self.env['stock.picking'].search([('sale_id', '=', rec.id)])
             orderlines = rec.mapped('order_line')
-            if not pickings:
-                rec.tl_delivery_status = 'nothing'
-            elif all(oline.qty_delivered == 0 for oline in orderlines):
+            if all(oline.qty_delivered == 0 for oline in orderlines):
                 rec.tl_delivery_status = 'to_deliver'
             elif orderlines.filtered(lambda x: x.qty_delivered < x.product_uom_qty):
                 rec.tl_delivery_status = 'partial'
@@ -30,3 +28,5 @@ class SalesOrder(models.Model):
                 rec.tl_delivery_status = 'delivered'
             elif any(pick.state in ('waiting', 'confirmed') for pick in pickings):
                 rec.tl_delivery_status = 'processing'
+            elif not pickings:
+                rec.tl_delivery_status = 'nothing'
